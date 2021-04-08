@@ -8,8 +8,6 @@
 
 	<h:head>
 		<title><ui:insert name="title">Agendamento</ui:insert></title>
-		<link type="image/x-icon" rel="shortcut icon"
-			href="#{resource['img/favicon.ico']}" />
 		<h:outputStylesheet name="primeicons/primeicons.css"
 			library="primefaces" />
 		<h:outputStylesheet name="css/main.css" />
@@ -52,7 +50,12 @@
 				<div class="ui-g-12">
 					<h:form id="formTemplate">
 						<p:menubar styleClass="noBorder">
-							<p:menuitem icon="pi pi-home" value="Home" outcome="/index" />
+							<p:menuitem icon="pi pi-home" 
+								value="Home" 
+								outcome="/index" />
+							<p:menuitem icon="pi pi-ticket" 
+								value="Categorias" 
+								outcome="/categorias" />
 						</p:menubar>
 					</h:form>
 				</div>
