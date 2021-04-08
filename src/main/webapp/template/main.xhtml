@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:head>
+		<title><ui:insert name="title">Agendamento</ui:insert></title>
+		<link type="image/x-icon" rel="shortcut icon"
+			href="#{resource['img/favicon.ico']}" />
+		<h:outputStylesheet name="primeicons/primeicons.css"
+			library="primefaces" />
+		<h:outputStylesheet name="css/main.css" />
+		<h:outputScript name="js/main.js" />
+		<script>
+			var ctx = "#{request.contextPath}"
+		</script>
+	</h:head>
+
+	<h:body>
+		<p:growl id="growl" showDetail="false" sticky="false">
+			<p:autoUpdate />
+		</p:growl>
+	
+		<p:ajaxStatus onstart="PF('statusDialog').show()"
+			onsuccess="PF('statusDialog').hide()"
+			onerror="window.location.replace(ctx + '/erros/erro-interno.xhtml');" />
+		<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+			closable="false" resizable="false" showHeader="false">
+			<span class="pi pi-spin pi-spinner" />
+		</p:dialog>
+		<h:form>
+			<p:confirmDialog global="true">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+			</p:confirmDialog>
+		</h:form>
+	
+		<div id="wrapper">
+			<div class="ui-g">
+				<div id="header" class="ui-g-12"> 
+					<div class="ui-g-11 headerText">Sistema de Agendamento</div>
+					<div class="ui-g-1 rightAlign">
+						<span class="pi pi-bell" />
+					</div>
+				</div>
+				
+				<div class="ui-g-12">
+					<h:form id="formTemplate">
+						<p:menubar styleClass="noBorder">
+							<p:menuitem icon="pi pi-home" value="Home" outcome="/index" />
+						</p:menubar>
+					</h:form>
+				</div>
+			</div>
+		
+			<div id="content" class="ui-g">
+				<div class="ui-g-12">
+					<ui:insert name="content">Bem vindo!</ui:insert>
+				</div>
+			</div>
+				
+			<div id="footer" class="ui-g">
+				<div class="ui-g-4 footerText">2021</div>
+				<div class="ui-g-4 centerAlign footerText">Versão: 0.1</div>
+				<div class="ui-g-4 rightAlign footerText">DSOO - 2021/01</div>
+			</div>
+		</div>
+	</h:body>
+</html>

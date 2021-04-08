@@ -1,0 +1,45 @@
+#header {
+	background-color: #3d3846;
+	color: white;
+}
+
+.headerText {
+	font-weight: bold;
+}
+
+body {
+	margin: 0;
+	height: 100%;
+}
+
+#wrapper {
+   height: 100vh;
+   display: grid;
+   grid-template-rows: 100px 1fr 30px;
+}
+
+#content {
+   overflow-y: scroll;
+   background-color: #f9f9f9;
+}
+
+.footerText {
+	font-size: 10pt;
+	font-weight: bold;
+}
+
+.centerAlign {
+	text-align: center;
+}
+
+.rightAlign {
+	text-align: right;
+}
+
+.width20 {
+	width: 20px !important;
+}
+
+.noBorder {
+	border: none !important;
+}
