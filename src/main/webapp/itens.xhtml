@@ -40,7 +40,26 @@
 				</div>
 				
 				<!-- Tabela de itens -->
-				
+				<p:dataTable id="tblItens" 
+					var="c" 
+					value="#{itensView.itens}">
+            
+            		<p:column headerText="Código">
+                		<h:outputText value="#{c.id}" />
+            		</p:column>
+            
+            		<p:column headerText="Descrição">
+                		<h:outputText value="#{c.descricao}" />
+            		</p:column>
+            
+            		<p:column headerText="Status">
+                		<h:outputText value="#{c.ativa}" />
+            		</p:column>
+            
+            		<p:column headerText="Ações">
+            			<p:commandButton icon="pi pi-pencil" title="Editar" />
+            		</p:column>
+        		</p:dataTable>
 				
 			</p:panel>
 		</h:form>
