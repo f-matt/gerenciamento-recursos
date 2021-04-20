@@ -10,9 +10,39 @@
 	<ui:define name="title">Itens</ui:define>
 	
 	<ui:define name="content">
-		<h2>Cadastro de itens</h2>
+		<h2>Cadastro de Itens</h2>
 		
-		<p>Em construção...</p>
-		<p>Descrição dos itens</p>
+		<h:form>
+			<p:panel header="Pesquisa de Itens">
+				<div class="ui-g">
+					<!-- Pesquisa Código do Item-->
+					<div class="ui-g-2">
+						<p:outputLabel for="idItens" value="Código"></p:outputLabel>
+					</div>
+					<div class="ui-g-10">
+						<p:inputText id="idItens" />
+						<p:commandButton  styleClass="btn-search" icon="pi pi-search" title="Pesquisar por código" />
+					</div>
+					
+					<!-- Pesquisa Descrição do Item -->
+					<div class="ui-g-2">
+    					<p:outputLabel for="descricao" value="Descrição" />
+    				</div>
+    				<div class="ui-g-10">
+    					<p:inputText id="descricao" />
+    					<p:commandButton styleClass="btn-search" icon="pi pi-search" title="Pesquisar por descrição" />
+    				</div>
+    				
+    				<!-- Botão Adicionar Item -->
+    				<div class="ui-g-12">
+    					<p:commandButton styleClass="btn-add" icon="pi pi-plus"	title="Novo Item" />
+    				</div>
+				</div>
+				
+				<!-- Tabela de itens -->
+				
+				
+			</p:panel>
+		</h:form>
 	</ui:define>
 </ui:composition>
