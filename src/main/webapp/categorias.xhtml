@@ -20,23 +20,24 @@
     				</div>
     				<div class="ui-g-10">
     					<p:inputText id="idCategoria" />
+    					<p:commandButton styleClass="btn-search" icon="pi pi-search"
+    						title="Pesquisar por Código"
+    						action="#{categoriasView.pesquisa}"
+    						update="tblCategorias"/>
     				</div>
     				<div class="ui-g-2">
     					<p:outputLabel for="descricao" value="Descrição:" />
     				</div>
     				<div class="ui-g-10">
     					<p:inputText id="descricao" />
-    				</div>
-    				
-    				<div class="ui-g-2">
-    					<p:commandButton value="Pesquisar"
-    						icon="pi pi-search"
+    					<p:commandButton styleClass="btn-search" icon="pi pi-search" 
+    						title="Pesquisar por descrição" 
     						action="#{categoriasView.pesquisa}"
-    						update="tblCategorias" />
+    						update="tblCategorias"/>
     				</div>
     				
-    				<div class="ui-g-10">
-    					<p:commandButton value="Nova" 
+    				<div class="ui-g-12">
+    					<p:commandButton styleClass="btn-add" title="Nova Categoria" 
     						icon="pi pi-plus" 
     						actionListener="#{categoriasView.novaCategoria}"
                             update="formDlgCategoria" 

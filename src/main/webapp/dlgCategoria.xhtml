@@ -25,8 +25,16 @@
 				<div class="ui-g-12">
 					<p:commandButton id="btnCadastra" 
 						value="Salvar"
-						action="#{categoriasView.salvaCategoria}" />
+						styleClass="btn-save"
+						action="#{categoriasView.salvaCategoria}"
+						icon="pi pi-check"/>
+					
+					<p:commandButton  
+						value="Cancelar"
+						styleClass="btn-cancel"
+						icon="pi pi-times"/>
 				</div>
+			
 			</div>
 		</p:dialog>
 	</h:form>

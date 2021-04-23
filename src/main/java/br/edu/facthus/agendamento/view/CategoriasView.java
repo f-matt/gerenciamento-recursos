@@ -53,5 +53,6 @@ public class CategoriasView implements Serializable {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
+	
 
 }
