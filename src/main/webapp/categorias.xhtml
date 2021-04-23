@@ -12,7 +12,7 @@
 	<ui:define name="content">
 		<h2>Cadastro de Categorias</h2>
 		
-		<h:form>
+		<h:form id="formCategorias">
 			<p:panel header="Pesquisa de Categorias">
 				<div class="ui-g">
     				<div class="ui-g-2">
@@ -20,17 +20,30 @@
     				</div>
     				<div class="ui-g-10">
     					<p:inputText id="idCategoria" />
+    					<p:commandButton styleClass="btn-search" icon="pi pi-search"
+    						title="Pesquisar por Código"
+    						action="#{categoriasView.pesquisa}"
+    						update="tblCategorias"/>
     				</div>
     				<div class="ui-g-2">
     					<p:outputLabel for="descricao" value="Descrição:" />
     				</div>
     				<div class="ui-g-10">
     					<p:inputText id="descricao" />
+    					<p:commandButton styleClass="btn-search" icon="pi pi-search" 
+    						title="Pesquisar por descrição" 
+    						action="#{categoriasView.pesquisa}"
+    						update="tblCategorias"/>
     				</div>
     				
     				<div class="ui-g-12">
-    					<p:commandButton value="Pesquisar" />
+    					<p:commandButton styleClass="btn-add" title="Nova Categoria" 
+    						icon="pi pi-plus" 
+    						actionListener="#{categoriasView.novaCategoria}"
+                            update="formDlgCategoria" 
+                            oncomplete="PF('categoriasDialog').show()" />
     				</div>
+    				
 				</div>
 				
 				<p:dataTable id="tblCategorias" 
@@ -55,5 +68,6 @@
         		</p:dataTable>
     		</p:panel>
 		</h:form>
+		<ui:include src="dlgCategoria.xhtml" />
 	</ui:define>
 </ui:composition>
