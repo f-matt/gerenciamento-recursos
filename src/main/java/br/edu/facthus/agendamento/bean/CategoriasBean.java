@@ -24,5 +24,6 @@ public class CategoriasBean {
 		categoria.setAtiva(true);
 		entityManager.persist(categoria);
 	}
+	
 
 }
