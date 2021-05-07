@@ -7,6 +7,8 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.PrimeFaces;
+
 import br.edu.facthus.agendamento.bean.CategoriasBean;
 import br.edu.facthus.agendamento.entity.Categoria;
 import br.edu.facthus.agendamento.util.FacesUtils;
@@ -34,10 +36,30 @@ public class CategoriasView implements Serializable {
     }
 	
 	public void salvaCategoria() {
-		categoriasBean.salvaCategoria(categoria);
-		FacesUtils.showInfo("Categoria cadastrada com sucesso!");
+		try {
+			if (categoria.getId() == null) {
+				categoriasBean.salvaCategoria(categoria);
+				categoria = new Categoria();
+				FacesUtils.showInfo("Categoria cadastrada com sucesso!");
+			} else {
+				categoriasBean.atualizaCategoria(categoria);
+				FacesUtils.showInfo("Categoria atualizada com sucesso!");
+			}
+		} catch (Exception e) {
+			FacesUtils.showError("Ocorreu um erro ao cadastrar a categoria.");
+		}
+	}
+	
+	public void openDlgEditar(Categoria categoria) {
+		this.categoria = categoria;
+		PrimeFaces.current().executeScript("PF('categoriasDialog').show()");
+		
 	}
 
+	
+	/*
+	 * Auto-generated
+	 */
 	public List<Categoria> getCategorias() {
 		return categorias;
 	}
