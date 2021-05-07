@@ -1,0 +1,55 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui" 
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+	<h:form id="formDlgCategoria">
+		<p:dialog header="Cadastro de categoria" 
+			modal="true"
+			widgetVar="categoriasDialog" 
+			responsive="true">
+			
+			<p:outputPanel id="pnlCategoria">
+				<div class="ui-g">
+					<div class="ui-g-4">
+						<p:outputLabel for="descricao"
+							value="Descrição:" />
+					</div>
+					<div class="ui-g-8">
+						<p:inputText id="descricao"
+							value="#{categoriasView.categoria.descricao}" />
+					</div>
+					
+					<h:panelGroup rendered="#{categoriasView.categoria.id != null}">
+						<div class="ui-g-4">
+							<p:outputLabel for="ativa"
+								value="Ativa:" />
+						</div>
+						<div class="ui-g-8">
+							<p:toggleSwitch id="ativa" 
+								value="#{categoriasView.categoria.ativa}"/>
+						</div>
+					</h:panelGroup>
+					
+					<div class="ui-g-12">
+						<p:commandButton id="btnCadastra" 
+							value="Salvar"
+							styleClass="btn-save"
+							action="#{categoriasView.salvaCategoria}"
+							icon="pi pi-check"
+							update="pnlCategoria" />
+						
+						<p:commandButton  
+							value="Cancelar"
+							styleClass="btn-cancel"
+							icon="pi pi-times"
+							onclick="PF('categoriasDialog').hide()" />
+					</div>
+				</div>
+			</p:outputPanel>
+		</p:dialog>
+	</h:form>
+</ui:composition>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<ui:composition template="template/main.xhtml"
+<ui:composition template="../template/main.xhtml"
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -59,11 +59,20 @@
             		</p:column>
             
             		<p:column headerText="Ativa">
-                		<h:outputText value="#{c.ativa}" />
+            			<h:panelGroup rendered="#{c.ativa}">
+            				<span class="pi pi-check text-green" />
+            			</h:panelGroup>
+            			
+                		<h:panelGroup rendered="#{not c.ativa}">
+                			<span class="pi pi-times text-red" />
+                		</h:panelGroup>
             		</p:column>
             
             		<p:column headerText="Ações">
-            			<p:commandButton icon="pi pi-pencil" title="Editar" />
+            			<p:commandButton icon="pi pi-pencil" 
+            				title="Editar"
+            				action="#{categoriasView.openDlgEditar(c)}"
+            				update="formDlgCategoria" />
             		</p:column>
         		</p:dataTable>
     		</p:panel>
