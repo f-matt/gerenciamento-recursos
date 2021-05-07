@@ -25,5 +25,8 @@ public class CategoriasBean {
 		entityManager.persist(categoria);
 	}
 	
+	public void atualizaCategoria(Categoria categoria) {
+		entityManager.merge(categoria);
+	}
 
 }
