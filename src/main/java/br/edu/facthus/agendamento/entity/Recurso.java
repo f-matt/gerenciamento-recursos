@@ -6,19 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 
 @Entity
-@NamedQueries({
-	@NamedQuery(name = "Categoria.findByDescricao",
-			query = "SELECT c "
-					+ "FROM Categoria c "
-					+ "WHERE UPPER(c.descricao) LIKE :descricao "
-					+ "ORDER BY c.descricao")
-})
-public class Categoria implements Serializable {
-
+public class Recurso implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -52,5 +42,6 @@ public class Categoria implements Serializable {
 	public void setAtiva(Boolean ativa) {
 		this.ativa = ativa;
 	}
+
 
 }
