@@ -13,6 +13,19 @@ public class CategoriasBean {
 	
 	@PersistenceContext
 	private EntityManager entityManager;
+	
+	public Categoria buscaPorCodigo(Integer codigo) {
+		return entityManager.find(Categoria.class, codigo);
+	}
+	
+	public List<Categoria> buscaPorDescricao(String descricao) {
+		return entityManager
+				.createNamedQuery("Categoria.findByDescricao", 
+						Categoria.class)
+				.setParameter("descricao", String.format("%%%s%%", 
+						descricao.toUpperCase()))
+				.getResultList();
+	}
 
 	public List<Categoria> buscaCategorias() {
 		return entityManager

@@ -19,20 +19,25 @@
     					<p:outputLabel for="idCategoria" value="Código:" />
     				</div>
     				<div class="ui-g-10">
-    					<p:inputText id="idCategoria" />
-    					<p:commandButton styleClass="btn-search" icon="pi pi-search"
+    					<p:inputText id="idCategoria" 
+    						value="#{categoriasView.codigoPesquisa}" />
+    					<p:commandButton styleClass="btn-search" 
+    						icon="pi pi-search"
     						title="Pesquisar por Código"
-    						action="#{categoriasView.pesquisa}"
-    						update="tblCategorias"/>
+    						action="#{categoriasView.pesquisaPorCodigo}"
+    						update="tblCategorias" />
     				</div>
     				<div class="ui-g-2">
-    					<p:outputLabel for="descricao" value="Descrição:" />
+    					<p:outputLabel for="descricao" 
+    						value="Descrição:" />
     				</div>
     				<div class="ui-g-10">
-    					<p:inputText id="descricao" />
-    					<p:commandButton styleClass="btn-search" icon="pi pi-search" 
+    					<p:inputText id="descricao" 
+    						value="#{categoriasView.descricaoPesquisa}" />
+    					<p:commandButton styleClass="btn-search" 
+    						icon="pi pi-search" 
     						title="Pesquisar por descrição" 
-    						action="#{categoriasView.pesquisa}"
+    						action="#{categoriasView.pesquisaPorDescricao}"
     						update="tblCategorias"/>
     				</div>
     				
