@@ -1,7 +1,10 @@
 package br.edu.facthus.agendamento.view;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -19,6 +22,9 @@ public class CategoriasView implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	private static final Logger logger = 
+			Logger.getLogger(CategoriasView.class.getName());
+	
 	@Inject
 	private CategoriasBean categoriasBean;
 	
@@ -26,9 +32,50 @@ public class CategoriasView implements Serializable {
 	
 	private Categoria categoria;
 	
-	public void pesquisa() {
-		// TODO: ajustar para pesquisa
-		categorias = categoriasBean.buscaCategorias();
+	private Integer codigoPesquisa;
+	
+	private String descricaoPesquisa;
+	
+	public void pesquisaPorCodigo() {
+		try {
+			categorias = new ArrayList<>();
+			if (codigoPesquisa == null) {
+				FacesUtils.showError("É necessário informar o código.");
+				return;
+			}
+			
+			Categoria c = categoriasBean
+					.buscaPorCodigo(codigoPesquisa);
+			if (c == null) {
+				FacesUtils
+					.showError("Nenhuma categoria encontrada com o código informado.");
+				return;
+			}
+			
+			categorias.add(c);
+		} catch (Exception e) {
+			logger.log(Level.SEVERE, e.getMessage(), e);
+			FacesUtils.showError("Ocorreu um erro ao fazer a pesquisa.");
+		}
+	}
+	
+	public void pesquisaPorDescricao() {
+		try {
+			categorias = new ArrayList<>();
+			if (descricaoPesquisa == null || descricaoPesquisa.isBlank()) {
+				FacesUtils.showError("É necessário informar a descrição.");
+				return;
+			}
+			
+			categorias = categoriasBean
+					.buscaPorDescricao(descricaoPesquisa);
+			if (categorias.isEmpty())
+				FacesUtils
+					.showError("Nenhuma categoria encontrada com a descrição informada.");
+		} catch (Exception e) {
+			logger.log(Level.SEVERE, e.getMessage(), e);
+			FacesUtils.showError("Ocorreu um erro ao fazer a pesquisa.");
+		}
 	}
 		
 	public void novaCategoria() {
@@ -75,6 +122,21 @@ public class CategoriasView implements Serializable {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	
+
+	public Integer getCodigoPesquisa() {
+		return codigoPesquisa;
+	}
+
+	public void setCodigoPesquisa(Integer codigoPesquisa) {
+		this.codigoPesquisa = codigoPesquisa;
+	}
+
+	public String getDescricaoPesquisa() {
+		return descricaoPesquisa;
+	}
+
+	public void setDescricaoPesquisa(String descricaoPesquisa) {
+		this.descricaoPesquisa = descricaoPesquisa;
+	}
 
 }
