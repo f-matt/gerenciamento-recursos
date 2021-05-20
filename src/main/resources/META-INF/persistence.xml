@@ -15,4 +15,15 @@
 			<property name="hibernate.show_sql" value="false" />
 		</properties>
 	</persistence-unit>
+	
+	<!-- 
+	<persistence-unit name="agendamentoPU">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<non-jta-data-source>agendamentoDS</non-jta-data-source>
+		<properties>
+			<property name="hibernate.dialect"
+				value="org.hibernate.dialect.PostgreSQLDialect" />
+		</properties>
+	</persistence-unit>
+	 -->
 </persistence>

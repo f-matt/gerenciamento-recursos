@@ -1,0 +1,55 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui" 
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+	<h:form id="formDlgRecurso">
+		<p:dialog header="Cadastro de recurso" 
+			modal="true"
+			widgetVar="recursosDialog" 
+			responsive="true">
+			
+			<p:outputPanel id="pnlRecurso">
+				<div class="ui-g">
+					<div class="ui-g-4">
+						<p:outputLabel for="descricao"
+							value="Descrição:" />
+					</div>
+					<div class="ui-g-8">
+						<p:inputText id="descricao"
+							value="#{recursosView.recurso.descricao}" />
+					</div>
+					
+					<h:panelGroup rendered="#{recursosView.recurso.id != null}">
+						<div class="ui-g-4">
+							<p:outputLabel for="ativa"
+								value="Ativo:" />
+						</div>
+						<div class="ui-g-8">
+							<p:toggleSwitch id="ativa" 
+								value="#{recursosView.recurso.ativa}"/>
+						</div>
+					</h:panelGroup>
+					
+					<div class="ui-g-12">
+						<p:commandButton id="btnCadastra" 
+							value="Salvar"
+							styleClass="btn-save"
+							action="#{recursosView.salvaRecurso}"
+							icon="pi pi-check"
+							update="pnlRecurso, formRecursos" />
+						
+						<p:commandButton  
+							value="Cancelar"
+							styleClass="btn-cancel"
+							icon="pi pi-times"
+							onclick="PF('recursosDialog').hide()" />
+					</div>
+				</div>
+			</p:outputPanel>
+		</p:dialog>
+	</h:form>
+</ui:composition>
