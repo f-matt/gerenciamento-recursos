@@ -1,0 +1,70 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui" 
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+	<h:form id="formDlgItens">
+		<p:dialog header="Cadastro de Itens" 
+			modal="true"
+			widgetVar="itensDialog" 
+			responsive="true">
+			
+			<p:outputPanel id="pnlItens">
+				<div class="ui-g">
+					<div class="ui-g-4">
+						<p:outputLabel for="recurso"
+							value="Recurso:" />
+					</div>
+					<div class="ui-g-8">
+						<p:selectOneMenu id="recurso" 
+							value="#{itensView.item.recurso}"
+							converter="omnifaces.SelectItemsConverter">
+					
+							<f:selectItems value="#{itensView.recursos}" 
+								var="r"
+	                            itemLabel="#{r.descricao}" 
+	                            itemValue="#{r}" />
+						</p:selectOneMenu>
+					</div>
+					<div class="ui-g-4">
+						<p:outputLabel for="descricao"
+							value="Descrição:" />
+					</div>
+					<div class="ui-g-8">
+						<p:inputText id="descricao"
+							value="#{itensView.item.descricao}" />
+					</div>
+					
+					<h:panelGroup rendered="#{itensView.item.id != null}">
+						<div class="ui-g-4">
+							<p:outputLabel for="ativa"
+								value="Ativa:" />
+						</div>
+						<div class="ui-g-8">
+							<p:toggleSwitch id="ativa" 
+								value="#{itensView.item.ativa}"/>
+						</div>
+					</h:panelGroup>
+					
+					<div class="ui-g-12">
+						<p:commandButton id="btnCadastra" 
+							value="Salvar"
+							styleClass="btn-save"
+							action="#{itensView.salvaItem}"
+							icon="pi pi-check"
+							update="pnlItens" />
+						
+						<p:commandButton  
+							value="Cancelar"
+							styleClass="btn-cancel"
+							icon="pi pi-times"
+							onclick="PF('itensDialog').hide()" />
+					</div>
+				</div>
+			</p:outputPanel>
+		</p:dialog>
+	</h:form>
+</ui:composition>
