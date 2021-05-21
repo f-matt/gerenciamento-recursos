@@ -15,6 +15,22 @@
 			<p:outputPanel id="pnlRecurso">
 				<div class="ui-g">
 					<div class="ui-g-4">
+						<p:outputLabel for="categoria"
+							value="Categoria:" />
+					</div>
+					<div class="ui-g-8">
+						<p:selectOneMenu id="categoria" 
+							value="#{recursosView.recurso.categoria}"
+							converter="omnifaces.SelectItemsConverter">
+					
+							<f:selectItems value="#{recursosView.categorias}" 
+								var="c"
+	                            itemLabel="#{c.descricao}" 
+	                            itemValue="#{c}" />
+						</p:selectOneMenu>
+					</div>
+                    
+					<div class="ui-g-4">
 						<p:outputLabel for="descricao"
 							value="Descrição:" />
 					</div>
