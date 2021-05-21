@@ -9,16 +9,18 @@ import javax.persistence.PersistenceContext;
 import br.edu.facthus.agendamento.entity.Recurso;
 
 @Stateless
-
 public class RecursosBean {
 	
 	@PersistenceContext
 	private EntityManager entityManager;
-
 	
-	public void salvaRecursos(Recurso recursos) {
-		recursos.setAtiva(true);
-		entityManager.persist(recursos);
+	public void salvaRecurso(Recurso recurso) {
+		recurso.setAtiva(true);
+		entityManager.persist(recurso);
+	}
+	
+	public void atualizaRecurso(Recurso recurso) {
+		entityManager.merge(recurso);
 	}
 
 }

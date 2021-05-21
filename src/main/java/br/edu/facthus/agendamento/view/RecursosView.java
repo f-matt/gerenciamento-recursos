@@ -4,14 +4,18 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.PrimeFaces;
 
+import br.edu.facthus.agendamento.bean.CategoriasBean;
 import br.edu.facthus.agendamento.bean.RecursosBean;
+import br.edu.facthus.agendamento.entity.Categoria;
 import br.edu.facthus.agendamento.entity.Recurso;
+import br.edu.facthus.agendamento.util.FacesUtils;
 
 @Named
 @ViewScoped
@@ -19,11 +23,15 @@ public class RecursosView implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	@SuppressWarnings("unused")
 	private static final Logger logger = 
 			Logger.getLogger(RecursosView.class.getName());
 	
 	@Inject
 	private RecursosBean recursosBean;
+	
+	@Inject
+	private CategoriasBean categoriasBean;
 	
 	private List<Recurso> recursos;
 	
@@ -32,6 +40,13 @@ public class RecursosView implements Serializable {
 	private Integer codigoPesquisa;
 	
 	private String descricaoPesquisa;
+	
+	private List<Categoria> categorias;
+	
+	@PostConstruct
+	public void init() {
+		categorias = categoriasBean.buscaCategorias();
+	}
 	
 	public void pesquisaPorCodigo() {
 //		try {
@@ -80,18 +95,18 @@ public class RecursosView implements Serializable {
     }
 	
 	public void salvaRecurso() {
-//		try {
-//			if (categoria.getId() == null) {
-//				recursosBean.salvaCategoria(categoria);
-//				categoria = new Categoria();
-//				FacesUtils.showInfo("Categoria cadastrada com sucesso!");
-//			} else {
-//				recursosBean.atualizaCategoria(categoria);
-//				FacesUtils.showInfo("Categoria atualizada com sucesso!");
-//			}
-//		} catch (Exception e) {
-//			FacesUtils.showError("Ocorreu um erro ao cadastrar a categoria.");
-//		}
+		try {
+			if (recurso.getId() == null) {
+				recursosBean.salvaRecurso(recurso);
+				recurso = new Recurso();
+				FacesUtils.showInfo("Recurso cadastrado com sucesso!");
+			} else {
+				recursosBean.atualizaRecurso(recurso);
+				FacesUtils.showInfo("Recurso atualizado com sucesso!");
+			}
+		} catch (Exception e) {
+			FacesUtils.showError("Ocorreu um erro ao cadastrar a categoria.");
+		}
 	}
 	
 	public void openDlgEditar(Recurso recurso) {
@@ -133,6 +148,14 @@ public class RecursosView implements Serializable {
 
 	public void setDescricaoPesquisa(String descricaoPesquisa) {
 		this.descricaoPesquisa = descricaoPesquisa;
+	}
+
+	public List<Categoria> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
 	}
 
 }
