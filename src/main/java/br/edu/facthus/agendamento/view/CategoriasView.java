@@ -14,6 +14,7 @@ import org.primefaces.PrimeFaces;
 
 import br.edu.facthus.agendamento.bean.CategoriasBean;
 import br.edu.facthus.agendamento.entity.Categoria;
+import br.edu.facthus.agendamento.util.CustomRuntimeException;
 import br.edu.facthus.agendamento.util.FacesUtils;
 
 @Named
@@ -92,7 +93,10 @@ public class CategoriasView implements Serializable {
 				categoriasBean.atualizaCategoria(categoria);
 				FacesUtils.showInfo("Categoria atualizada com sucesso!");
 			}
+		} catch (CustomRuntimeException e) {
+			FacesUtils.showError(e.getMessage());
 		} catch (Exception e) {
+			logger.log(Level.SEVERE, e.getMessage(), e);
 			FacesUtils.showError("Ocorreu um erro ao cadastrar a categoria.");
 		}
 	}

@@ -6,6 +6,7 @@
         http://xmlns.jcp.org/xml/ns/persistence
         http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
 
+	<!-- 
 	<persistence-unit name="examplePU">
 		<jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
 		<properties>
@@ -15,8 +16,8 @@
 			<property name="hibernate.show_sql" value="false" />
 		</properties>
 	</persistence-unit>
+	 -->
 	
-	<!-- 
 	<persistence-unit name="agendamentoPU">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<non-jta-data-source>agendamentoDS</non-jta-data-source>
@@ -25,6 +26,5 @@
 				value="org.hibernate.dialect.PostgreSQLDialect" />
 		</properties>
 	</persistence-unit>
-	-->
-
+	
 </persistence>
