@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition template="../template/main.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui">
+	
+	<ui:define name="title">Solicitação de Recursos</ui:define>
+	
+	<ui:define name="content">
+		<h2>Solicitação de Recursos</h2>
+		
+		<h:form id="formSolicitacoes">
+			<p:panel header="Pesquisa de Solicitações">
+				<div class="ui-g">
+    				<div class="ui-g-2">
+    					<p:outputLabel for="idSolicitacao" value="Código:" />
+    				</div>
+    				<div class="ui-g-10">
+    					<p:inputText id="idSolicitacao" 
+    						value="#{solicitacoesView.codigoPesquisa}" />
+    					<p:commandButton styleClass="btn-search" 
+    						icon="pi pi-search"
+    						title="Pesquisar por Código"
+    						action="#{solicitacoesView.pesquisaPorCodigo}"
+    						update="tblSolicitacoes" />
+    				</div>
+				</div>
+				
+				<p:dataTable id="tblSolicitacoes" 
+					var="s" 
+					value="#{solicitacoesView.solicitacoes}">
+            
+            		<p:column headerText="Código">
+                		<h:outputText value="#{s.id}" />
+            		</p:column>
+            
+            		<p:column headerText="Recurso">
+                		<h:outputText value="#{s.recurso.descricao}" />
+            		</p:column>
+            
+            		<p:column headerText="Data">
+            			<h:outputText value="#{s.dthrSolicitacao}">
+            				<f:convertDateTime type="localDateTime" 
+            					pattern="dd/MM/yyyy HH:mm:ss" />
+            			</h:outputText>
+            		</p:column>
+            
+            		<p:column headerText="Ações">
+            			<p:commandButton icon="pi pi-pencil" 
+            				title="Editar"
+            				action="#{solicitacoesView.visualiza(s)}" />
+            		</p:column>
+        		</p:dataTable>
+    		</p:panel>
+		</h:form>
+		
+		<p>Em construção...</p>
+	</ui:define>
+</ui:composition>
