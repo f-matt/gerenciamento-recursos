@@ -50,23 +50,32 @@
 				
 				<!-- Tabela de itens -->
 				<p:dataTable id="tblItens" 
-					var="c" 
+					var="i" 
 					value="#{itensView.itens}">
             
             		<p:column headerText="Código">
-                		<h:outputText value="#{c.id}" />
+                		<h:outputText value="#{i.id}" />
             		</p:column>
             
             		<p:column headerText="Descrição">
-                		<h:outputText value="#{c.descricao}" />
+                		<h:outputText value="#{i.descricao}" />
             		</p:column>
             
             		<p:column headerText="Status">
-                		<h:outputText value="#{c.ativa}" />
+                			<h:panelGroup rendered="#{i.ativa}">
+            				<span class="pi pi-check text-green" />
+            			</h:panelGroup>
+            			
+                		<h:panelGroup rendered="#{not i.ativa}">
+                			<span class="pi pi-times text-red" />
+                		</h:panelGroup>
             		</p:column>
             
             		<p:column headerText="Ações">
-            			<p:commandButton icon="pi pi-pencil" title="Editar" />
+            			<p:commandButton icon="pi pi-pencil" 
+            				title="Editar"
+            				action="#{itensView.openDlgEditar(i)}"
+            				update="formDlgItens" />
             		</p:column>
         		</p:dataTable>
 				
