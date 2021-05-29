@@ -8,8 +8,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "itens")
+@NamedQueries({
+	@NamedQuery(name = "Item.findByDescricao",
+			query = "SELECT i "
+					+ "FROM Item i "
+					+ "WHERE UPPER(i.descricao) LIKE :descricao "
+					+ "ORDER BY i.descricao")
+})
 public class Item implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -40,7 +51,6 @@ public class Item implements Serializable {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

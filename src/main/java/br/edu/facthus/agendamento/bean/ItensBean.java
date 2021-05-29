@@ -16,6 +16,19 @@ public class ItensBean {
 	@PersistenceContext
 	private EntityManager entityManager;
 
+	public Item buscaPorCodigo(Integer codigo) {
+		return entityManager.find(Item.class, codigo);
+	}
+
+	public List<Item> buscaPorDescricao(String descricao) {
+		return entityManager
+				.createNamedQuery("Item.findByDescricao", 
+						Item.class)
+				.setParameter("descricao", String.format("%%%s%%", 
+						descricao.toUpperCase()))
+				.getResultList();
+	}
+	
 	public List<Item> buscaItem() {
 		return entityManager
 				.createQuery("SELECT i FROM Item i", Item.class)
@@ -30,5 +43,4 @@ public class ItensBean {
 	public void atualizaItem(Item item) {
 		entityManager.merge(item);
 	}
-
 }
