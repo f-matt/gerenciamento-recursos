@@ -56,128 +56,134 @@
 		</h:form>
 		
 		<!-- Dialog para as informaçoes detalhadas do usuario -->
-		<p:dialog header="Perfil do usuário" widgetVar="dlg1" minHeight="40" width="700" showEffect="fade">
-		
-		    <div>
-				<p:outputLabel value="Código: 1" />
-			</div>
-			<br/>
-			<div>
-				<p:outputLabel value="Nome: Lucas" />
-			</div>
-			<br/>
-			<div>
-				<p:outputLabel value="E-mail: Lucas@gmail.com" />
-			</div>
-			<br/>
-			<div>
-				<p:outputLabel value="Data de cadastro: 10/02/2021" />
-			</div>
-			<br/>
-			<div>
-				<p:outputLabel value="Data do último acesso: 14/02/2021" />
-			</div>
-			<br/>
-			<div>
-				<p:outputLabel value="Situação do cadastro: (Ativo ou inativo)" />
-			</div>
-			<br/>
-			<div>
-				<p:outputLabel value="Tipo de usuário: (Comum ou Administrador)" />
-			</div>
-			<br/>
+		<h:form>
+			<p:dialog header="Perfil do usuário" widgetVar="dlg1" minHeight="40" width="700" showEffect="fade">
 			
-			<!-- Botão que abre o Dialog para edição do usuario -->
-		    <f:facet name="footer">
-		        <p:commandButton type="button" value="Editar" icon="pi pi-pencil" style="width: 5rem" onclick="PF('dlg2').show()"/>
-		    </f:facet>
-		</p:dialog>
+			    <div>
+					<p:outputLabel value="Código: 1" />
+				</div>
+				<br/>
+				<div>
+					<p:outputLabel value="Nome: Lucas" />
+				</div>
+				<br/>
+				<div>
+					<p:outputLabel value="E-mail: Lucas@gmail.com" />
+				</div>
+				<br/>
+				<div>
+					<p:outputLabel value="Data de cadastro: 10/02/2021" />
+				</div>
+				<br/>
+				<div>
+					<p:outputLabel value="Data do último acesso: 14/02/2021" />
+				</div>
+				<br/>
+				<div>
+					<p:outputLabel value="Situação do cadastro: (Ativo ou inativo)" />
+				</div>
+				<br/>
+				<div>
+					<p:outputLabel value="Tipo de usuário: (Comum ou Administrador)" />
+				</div>
+				<br/>
+				
+				<!-- Botão que abre o Dialog para edição do usuario -->
+			    <f:facet name="footer">
+			        <p:commandButton type="button" value="Editar" icon="pi pi-pencil" style="width: 5rem" onclick="PF('dlg2').show()"/>
+			    </f:facet>
+			</p:dialog>
+		</h:form>
 		
 		<!-- Dialog de edição -->
-		<p:dialog header="Editar perfil" showEffect="fade" modal="true" widgetVar="dlg2" responsive="true" width="50%">
-            <p:outputPanel>
-            
-                <div class="ui-g-2">
-						<p:outputLabel value="Nome:" />
+		<h:form>
+			<p:dialog header="Editar perfil" showEffect="fade" modal="true" widgetVar="dlg2" responsive="true" width="50%">
+	            <p:outputPanel>
+	            
+	                <div class="ui-g-2">
+							<p:outputLabel value="Nome:" />
+						</div>
+						<div class="ui-g-10">
+							<p:inputText  />
+					</div>
+					<div class="ui-g-2">
+							<p:outputLabel value="E-mail:" />
+						</div>
+						<div class="ui-g-10">
+							<p:inputText  />
+					</div>
+					<div class="ui-g-2">
+							<p:outputLabel value="Situação do cadastro:" />
 					</div>
 					<div class="ui-g-10">
-						<p:inputText  />
-				</div>
-				<div class="ui-g-2">
-						<p:outputLabel value="E-mail:" />
+						<p:selectOneRadio unselectable="true">
+				        	<f:selectItem itemLabel="Ativo" itemValue="Ativo"/>
+				        	<f:selectItem itemLabel="Inativo" itemValue="Inativo"/>
+	        			</p:selectOneRadio>
+					</div>
+					<div class="ui-g-2">
+						<p:outputLabel value="Tipo de usuário:" />
 					</div>
 					<div class="ui-g-10">
-						<p:inputText  />
-				</div>
-				<div class="ui-g-2">
-						<p:outputLabel value="Situação do cadastro:" />
-				</div>
-				<div class="ui-g-10">
-					<p:selectOneRadio unselectable="true">
-			        	<f:selectItem itemLabel="Ativo" itemValue="Ativo"/>
-			        	<f:selectItem itemLabel="Inativo" itemValue="Inativo"/>
-        			</p:selectOneRadio>
-				</div>
-				<div class="ui-g-2">
-					<p:outputLabel value="Tipo de usuário:" />
-				</div>
-				<div class="ui-g-10">
-					<p:selectOneRadio unselectable="true">
-			        	<f:selectItem itemLabel="Comum" itemValue="Comum"/>
-			        	<f:selectItem itemLabel="Administrador" itemValue="Administrador"/>
-        			</p:selectOneRadio>
-				</div>
-				
-            </p:outputPanel>
-
-            <f:facet name="footer">
-                <p:commandButton styleClass="btn-save" value="Save" icon="pi pi-check"/>
-                <p:commandButton styleClass="btn-cancel" value="Cancelar" icon="pi pi-times"/>
-            </f:facet>
-        </p:dialog>
+						<p:selectOneRadio unselectable="true">
+				        	<f:selectItem itemLabel="Comum" itemValue="Comum"/>
+				        	<f:selectItem itemLabel="Administrador" itemValue="Administrador"/>
+	        			</p:selectOneRadio>
+					</div>
+					
+	            </p:outputPanel>
+	
+	            <f:facet name="footer">
+	                <p:commandButton styleClass="btn-save" value="Save" icon="pi pi-check"/>
+	                <p:commandButton styleClass="btn-cancel" value="Cancelar" icon="pi pi-times"/>
+	            </f:facet>
+	        </p:dialog>
+        </h:form>
         
         <!-- Dialog para novo usuario -->
-        <p:dialog header="Novo perfil" showEffect="fade" modal="true" widgetVar="dlg3" responsive="true">
-            <p:outputPanel>
-            
-                <div class="ui-g-2">
-						<p:outputLabel value="Nome:" />
+        <h:form>
+	        <p:dialog header="Novo perfil" showEffect="fade" modal="true" widgetVar="dlg3" responsive="true">
+	            <p:outputPanel>
+	            
+	                <div class="ui-g-2">
+							<p:outputLabel value="Nome:" />
+						</div>
+						<div class="ui-g-10">
+							<p:inputText  />
+					</div>
+					<div class="ui-g-2">
+							<p:outputLabel value="E-mail:" />
+						</div>
+						<div class="ui-g-10">
+							<p:inputText  />
+					</div>
+					<div class="ui-g-2">
+							<p:outputLabel value="Situação do cadastro:" />
 					</div>
 					<div class="ui-g-10">
-						<p:inputText  />
-				</div>
-				<div class="ui-g-2">
-						<p:outputLabel value="E-mail:" />
+						<p:selectOneRadio unselectable="true">
+				        	<f:selectItem itemLabel="Ativo" itemValue="Ativo"/>
+				        	<f:selectItem itemLabel="Inativo" itemValue="Inativo"/>
+	        			</p:selectOneRadio>
+					</div>
+					<div class="ui-g-2">
+						<p:outputLabel value="Tipo de usuário:" />
 					</div>
 					<div class="ui-g-10">
-						<p:inputText  />
-				</div>
-				<div class="ui-g-2">
-						<p:outputLabel value="Situação do cadastro:" />
-				</div>
-				<div class="ui-g-10">
-					<p:selectOneRadio unselectable="true">
-			        	<f:selectItem itemLabel="Ativo" itemValue="Ativo"/>
-			        	<f:selectItem itemLabel="Inativo" itemValue="Inativo"/>
-        			</p:selectOneRadio>
-				</div>
-				<div class="ui-g-2">
-					<p:outputLabel value="Tipo de usuário:" />
-				</div>
-				<div class="ui-g-10">
-					<p:selectOneRadio unselectable="true">
-			        	<f:selectItem itemLabel="Comum" itemValue="Comum"/>
-			        	<f:selectItem itemLabel="Administrador" itemValue="Administrador"/>
-        			</p:selectOneRadio>
-				</div>
-				
-            </p:outputPanel>
-
-            <f:facet name="footer">
-                <p:commandButton styleClass="btn-save" value="Save" icon="pi pi-check"/>
-                <p:commandButton styleClass="btn-cancel" value="Cancel" icon="pi pi-times"/>
-            </f:facet>
-        </p:dialog>
+						<p:selectOneRadio unselectable="true">
+				        	<f:selectItem itemLabel="Comum" itemValue="Comum"/>
+				        	<f:selectItem itemLabel="Administrador" itemValue="Administrador"/>
+	        			</p:selectOneRadio>
+					</div>
+					
+	            </p:outputPanel>
+	
+	            <f:facet name="footer">
+	                <p:commandButton styleClass="btn-save" value="Save" icon="pi pi-check"/>
+	                <p:commandButton styleClass="btn-cancel" value="Cancel" icon="pi pi-times"/>
+	            </f:facet>
+	        </p:dialog>
+        </h:form>
 		
 	</ui:define>
 </ui:composition>
