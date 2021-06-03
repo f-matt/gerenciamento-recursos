@@ -65,11 +65,20 @@
             		</p:column>
             
             		<p:column headerText="Status">
-                		<h:outputText value="#{r.ativa}" />
+                			<h:panelGroup rendered="#{r.ativa}">
+            				<span class="pi pi-check text-green" />
+            			</h:panelGroup>
+            			
+                		<h:panelGroup rendered="#{not r.ativa}">
+                			<span class="pi pi-times text-red" />
+                		</h:panelGroup>
             		</p:column>
             
             		<p:column headerText="Ações">
-            			<p:commandButton icon="pi pi-pencil" title="Editar" />
+            			<p:commandButton icon="pi pi-pencil" 
+            				title="Editar"
+            				action="#{recursosView.openDlgEditar(r)}"
+            				update="formDlgRecurso" />
             		</p:column>
         		</p:dataTable>
     		</p:panel>
