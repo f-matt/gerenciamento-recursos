@@ -12,7 +12,7 @@
 	<ui:define name="content">
 		<h2>Cadastro de Itens</h2>
 		
-		<h:form>
+		<h:form id="formItens">
 			<p:panel header="Pesquisa de Itens">
 				<div class="ui-g">
 					<!-- Pesquisa Código do Item-->
@@ -20,23 +20,28 @@
 						<p:outputLabel for="idItens" value="Código"></p:outputLabel>
 					</div>
 					<div class="ui-g-10">
-						<p:inputText id="idItens" />
-						<p:commandButton  styleClass="btn-search" icon="pi pi-search" title="Pesquisar por código"
-						action="#{itensView.pesquisa}"
+						<p:inputText id="idItens" 
+						value="#{itensView.codigoPesquisa}" />
+						<p:commandButton styleClass="btn-search" 
+						icon="pi pi-search" 
+						title="Pesquisar por código"
+						action="#{itensView.pesquisaPorCodigo}"
     					update="tblItens"/>
 					</div>
-					
 					<!-- Pesquisa Descrição do Item -->
 					<div class="ui-g-2">
-    					<p:outputLabel for="descricao" value="Descrição"
-    					action="#{itensView.pesquisa}"
-    					update="tblItens"/>
+    					<p:outputLabel for="descricao" 
+    					value="Descrição" />
     				</div>
     				<div class="ui-g-10">
-    					<p:inputText id="descricao" />
-    					<p:commandButton styleClass="btn-search" icon="pi pi-search" title="Pesquisar por descrição" />
+    					<p:inputText id="descricao"	
+    					value="#{itensView.descricaoPesquisa}" />
+    					<p:commandButton styleClass="btn-search" 
+    					icon="pi pi-search" 
+    					title="Pesquisar por descrição"
+    					action="#{itensView.pesquisaPorDescricao}"
+    					update="tblItens"/>
     				</div>
-    				
     				<!-- Botão Adicionar Item -->
     				<div class="ui-g-12">
     					<p:commandButton styleClass="btn-add" icon="pi pi-plus"	
@@ -47,26 +52,34 @@
     					/>
     				</div>
 				</div>
-				
 				<!-- Tabela de itens -->
 				<p:dataTable id="tblItens" 
-					var="c" 
+					var="i" 
 					value="#{itensView.itens}">
             
             		<p:column headerText="Código">
-                		<h:outputText value="#{c.id}" />
+                		<h:outputText value="#{i.id}" />
             		</p:column>
             
             		<p:column headerText="Descrição">
-                		<h:outputText value="#{c.descricao}" />
+                		<h:outputText value="#{i.descricao}" />
             		</p:column>
             
             		<p:column headerText="Status">
-                		<h:outputText value="#{c.ativa}" />
+                			<h:panelGroup rendered="#{i.ativa}">
+            				<span class="pi pi-check text-green" />
+            			</h:panelGroup>
+            			
+                		<h:panelGroup rendered="#{not i.ativa}">
+                			<span class="pi pi-times text-red" />
+                		</h:panelGroup>
             		</p:column>
             
             		<p:column headerText="Ações">
-            			<p:commandButton icon="pi pi-pencil" title="Editar" />
+            			<p:commandButton icon="pi pi-pencil" 
+            				title="Editar"
+            				action="#{itensView.openDlgEditar(i)}"
+            				update="formDlgItens" />
             		</p:column>
         		</p:dataTable>
 				
