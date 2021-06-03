@@ -2,6 +2,7 @@ package br.edu.facthus.agendamento.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,6 +32,7 @@ public class Item implements Serializable {
 	
 	private String descricao;
 	
+	@Column(name = "ativo")
 	private Boolean ativa;
 	
 	@ManyToOne

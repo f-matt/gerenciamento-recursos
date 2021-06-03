@@ -17,6 +17,16 @@ CREATE TABLE recursos (
 		REFERENCES categorias (id) 
 );
 
+CREATE TABLE itens (
+	id SERIAL,
+	descricao VARCHAR (128),
+	ativo BOOLEAN,
+	recurso_id INTEGER,
+	PRIMARY KEY (id),
+	FOREIGN KEY (recurso_id)
+		REFERENCES recursos (id)
+);
+
 -- Dados de teste
 INSERT INTO categorias (descricao, ativa)
 VALUES
