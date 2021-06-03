@@ -1,7 +1,10 @@
 package br.edu.facthus.agendamento.view;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -22,6 +25,9 @@ public class ItensView implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	private static final Logger logger = 
+			Logger.getLogger(ItensView.class.getName());
+	
 	@Inject
 	private ItensBean itensBean;
 	
@@ -34,12 +40,52 @@ public class ItensView implements Serializable {
 	
 	private List<Recurso> recursos;
 	
+	private Integer codigoPesquisa;
+
+	private String descricaoPesquisa;
 	
-	public void pesquisa() {
-		// TODO: ajustar para pesquisa
-		itens = itensBean.buscaItem();
+	public void pesquisaPorCodigo() {
+		try {
+			itens = new ArrayList<>();
+			if (codigoPesquisa == null) {
+				FacesUtils.showError("É necessário informar o código.");
+				return;
+			}
+
+			Item i = itensBean
+					.buscaPorCodigo(codigoPesquisa);
+			if (i == null) {
+				FacesUtils
+					.showError("Nenhum item encontrado com o código informado.");
+				return;
+			}
+
+			itens.add(i);
+		} catch (Exception e) {
+			logger.log(Level.SEVERE, e.getMessage(), e);
+			FacesUtils.showError("Ocorreu um erro ao fazer a pesquisa.");
+		}
 	}
-		
+
+	public void pesquisaPorDescricao() {
+		try {
+			itens = new ArrayList<>();
+			if (descricaoPesquisa == null || descricaoPesquisa.isBlank()) {
+				FacesUtils.showError("É necessário informar a descrição.");
+				return;
+			}
+
+			itens = itensBean
+					.buscaPorDescricao(descricaoPesquisa);
+			if (itens.isEmpty())
+				FacesUtils
+					.showError("Nenhum item encontrado com a descrição informada.");
+		} catch (Exception e) {
+			logger.log(Level.SEVERE, e.getMessage(), e);
+			FacesUtils.showError("Ocorreu um erro ao fazer a pesquisa.");
+		}
+	}
+	
 	public void novoItem() {
         item = new Item();
     }
@@ -69,14 +115,11 @@ public class ItensView implements Serializable {
 	public void init() {
 		recursos = recursosBean.buscaRecursos();
 	}
-	
-	
-	
+		
 	/*
 	 * Auto-generated
 	 */
 	
-
 	public List<Item> getItens() {
 		return itens;
 	}
@@ -92,7 +135,23 @@ public class ItensView implements Serializable {
 	public void setItem(Item item) {
 		this.item = item;
 	}
-
+	
+	public Integer getCodigoPesquisa() {
+		return codigoPesquisa;
+	}
+	
+	public void setCodigoPesquisa(Integer codigoPesquisa) {
+		this.codigoPesquisa = codigoPesquisa;
+	}
+	
+	public String getDescricaoPesquisa() {
+		return descricaoPesquisa;
+	}
+	
+	public void setDescricaoPesquisa(String descricaoPesquisa) {
+		this.descricaoPesquisa = descricaoPesquisa;
+	}
+	
 	public List<Recurso> getRecursos() {
 		return recursos;
 	}
@@ -100,9 +159,4 @@ public class ItensView implements Serializable {
 	public void setRecursos(List<Recurso> recursos) {
 		this.recursos = recursos;
 	}
-
-	
-
-	
-
 }
