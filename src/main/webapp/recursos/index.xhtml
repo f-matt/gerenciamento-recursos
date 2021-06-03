@@ -19,18 +19,27 @@
     					<p:outputLabel for="idRecurso" value="Código:" />
     				</div>
     				<div class="ui-g-10">
-    					<p:inputText id="idRecurso" />
-    					<p:commandButton  styleClass="btn-search" icon="pi pi-search" title="Pesquisar por código" />
+    					<p:inputText id="idRecurso" 
+    						value="#{recursosView.codigoPesquisa}" />
+    					<p:commandButton styleClass="btn-search" 
+    						icon="pi pi-search" 
+    						title="Pesquisar por código" 
+    						action="#{recursosView.pesquisaPorCodigo}"
+    						update="tblRecursos" />
     				</div>
     				<div class="ui-g-2">
-    					<p:outputLabel for="descricao" value="Descrição:" />
+    					<p:outputLabel for="descricao" 
+    						value="Descrição:" />
     				</div>
     				
     				<div class="ui-g-10">
-    					<p:inputText id="descricao" />
+    					<p:inputText id="descricao"
+    						value="#{recursosView.descricaoPesquisa}" />
     					<p:commandButton styleClass="btn-search"
     						icon="pi pi-search"
-    						title="Pesquisar por descrição" />
+    						title="Pesquisar por descrição"
+    						action="#{recursosView.pesquisaPorDescricao}"
+    						update="tblRecursos" />
     				</div>
     				
     				<div class="ui-g-12">
