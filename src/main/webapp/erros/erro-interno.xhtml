@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition template="../template/main.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui">
+	
+	<ui:define name="title">ERROR</ui:define>
+	
+		<ui:define name="content">
+
+		
+		<p:card style="width: 100em">
+		<h:form> 
+		<i class="pi pi-exclamation-triangle" style="font-size: 17rem"> Oops!</i>
+			
+        <p>Ocorreu um erro durante a exibição desta página.</p>
+        <p>Por favor atualize a página ou tente novamente mais tarde!</p>
+        <p> Caso o problema persista, por favor entre em contato com a Cetral de Suporte.</p>
+      <!--  </p> <p:commandButton type="button" value="Cetral de Suporte" styleClass="ui-button-warning" action="#"/> -->
+      </h:form> 
+	</p:card>
+	
+		</ui:define>
+</ui:composition>
