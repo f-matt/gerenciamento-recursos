@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import br.edu.facthus.agendamento.entity.Categoria;
 import br.edu.facthus.agendamento.entity.Recurso;
 
 @Stateless
@@ -39,6 +40,13 @@ public class RecursosBean {
 				.createNamedQuery("Recurso.findByDescricao", Recurso.class)
 				.setParameter("descricao", 
 						String.format("%%%s%%", descricao.toUpperCase()))
+				.getResultList();
+	}
+	
+	public List<Recurso> buscaPorCategoria(Categoria categoria) {
+		return entityManager
+				.createNamedQuery("Recurso.findByCategoria", Recurso.class)
+				.setParameter("categoria", categoria)
 				.getResultList();
 	}
 

@@ -6,44 +6,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "recursos")
-@NamedQueries({
-	@NamedQuery(name = "Recurso.findByDescricao",
-			query = "SELECT r "
-					+ "FROM Recurso r "
-					+ "WHERE UPPER(r.descricao) LIKE :descricao "
-					+ "ORDER BY r.descricao"),
-	@NamedQuery(name = "Recurso.findByCategoria",
-			query = "SELECT r "
-					+ "FROM Recurso r "
-					+ "WHERE r.categoria = :categoria "
-					+ "ORDER BY r.descricao")
-})
-public class Recurso implements Serializable {
-	private static final long serialVersionUID = 1L;
+@Table(name = "status_solicitacao")
+public class StatusSolicitacao implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	private String descricao;
-	
-	private Boolean ativa;
-	
-	@ManyToOne
-	@JoinColumn(name = "categoria_id")
-	private Categoria categoria;
-	
+
+	/*
+	 * Auto-generated
+	 */
 	@Override
 	public String toString() {
-		return "Recurso [id=" + id + "]";
+		return "StatusSolicitacao [id=" + id + "]";
 	}
 
 	@Override
@@ -62,7 +44,7 @@ public class Recurso implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Recurso other = (Recurso) obj;
+		StatusSolicitacao other = (StatusSolicitacao) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -85,22 +67,6 @@ public class Recurso implements Serializable {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-
-	public Boolean getAtiva() {
-		return ativa;
-	}
-
-	public void setAtiva(Boolean ativa) {
-		this.ativa = ativa;
-	}
-
-	public Categoria getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
 	}
 
 }

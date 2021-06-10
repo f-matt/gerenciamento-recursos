@@ -62,9 +62,16 @@
 							<p:menuitem icon="pi pi-list" 
 								value="Itens" 
 								outcome="/itens/index" />
-							<p:menuitem icon="pi pi-question" 
-								value="Solicitacao" 
-								outcome="/solicitacoes/index" />
+							<p:submenu icon="pi pi-question"
+								label="Solicitações">
+								
+								<p:menuitem  
+									value="Nova" 
+									outcome="/solicitacoes/nova" />
+								<p:menuitem  
+									value="Pesquisa" 
+									outcome="/solicitacoes/index" />
+							</p:submenu>
 							<p:menuitem icon="pi pi-user" 
 								value="Usuarios" 
 								outcome="/usuarios" />

@@ -36,8 +36,10 @@ public class Solicitacao implements Serializable {
 	@JoinColumn(name = "item_id")
 	private Item item;
 	
-	private boolean concluida = false;
-
+	@ManyToOne
+	@JoinColumn(name = "status_id")
+	private StatusSolicitacao status;
+	
 	/*
 	 * Auto-generated
 	 */
@@ -111,12 +113,12 @@ public class Solicitacao implements Serializable {
 		this.item = item;
 	}
 
-	public boolean isConcluida() {
-		return concluida;
+	public StatusSolicitacao getStatus() {
+		return status;
 	}
 
-	public void setConcluida(boolean concluida) {
-		this.concluida = concluida;
+	public void setStatus(StatusSolicitacao status) {
+		this.status = status;
 	}
-
+	
 }
