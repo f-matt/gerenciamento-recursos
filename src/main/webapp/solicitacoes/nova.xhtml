@@ -7,9 +7,56 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:o="http://omnifaces.org/ui">
 	
-	<ui:define name="title">Solicitação de Recursos</ui:define>
+	<ui:define name="title">Solicitar Recurso</ui:define>
 	
 	<ui:define name="content">
-		<h2>Em construção...</h2>
+		<h2>Solicitar Recurso</h2>
+	
+		<h:form>
+			<div class="ui-g">
+				<div class="ui-g-2">
+    				<p:outputLabel for="categoria" value="Categoria:" />
+    			</div>
+    			<div class="ui-g-10">
+    				<p:selectOneMenu id="categoria" 
+						value="#{novaSolicitacaoView.categoria}"
+						converter="omnifaces.SelectItemsConverter">
+					
+						<f:selectItems value="#{novaSolicitacaoView.categorias}" 
+							var="c"
+	                        itemLabel="#{c.descricao}" 
+	                        itemValue="#{c}" />
+					</p:selectOneMenu>
+				</div>
+				
+				<div class="ui-g-12">
+					<p:commandButton id="btnPesquisa" 
+						value="Pesquisar"
+						action="#{novaSolicitacaoView.pesquisaRecursos}"
+						icon="pi pi-search"
+						update="tblRecursos" />
+				</div>
+			</div>
+			
+			<p:dataTable id="tblRecursos" 
+				var="r" 
+				value="#{novaSolicitacaoView.recursos}">
+            
+           		<p:column headerText="Descrição">
+                	<h:outputText value="#{r.descricao}" />
+            	</p:column>
+            
+            	<p:column headerText="Quantidade disponível">
+
+           		</p:column>
+            
+            	<p:column headerText="Ações">
+            		<p:commandButton icon="pi pi-plus" 
+            			title="Solicitar"
+            			action="#{novaSolicitacaoView.registraSolicitacao}" />
+            	</p:column>
+        	</p:dataTable>
+		</h:form>
+
 	</ui:define>
 </ui:composition>
