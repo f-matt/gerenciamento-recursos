@@ -25,12 +25,12 @@ public class UsuariosBean {
 		return entityManager.find(Usuario.class, codigo);
 	}
 	
-	public List<Usuario> buscaPorDescricao(String descricao) {
+	public List<Usuario> buscaPorDescricao(String nome) {
 		return entityManager
-				.createNamedQuery("Usuario.findByDescricao", 
+				.createNamedQuery("Usuario.findByNome", 
 						Usuario.class)
-				.setParameter("descricao", String.format("%%%s%%", 
-						descricao.toUpperCase()))
+				.setParameter("nome", String.format("%%%s%%", 
+						nome.toUpperCase()))
 				.getResultList();
 	}
 
@@ -43,17 +43,17 @@ public class UsuariosBean {
 	public void salvaUsuario(Usuario usuario) {
 		try {
 			entityManager
-					.createNamedQuery("Usuario.findByDescricao", Usuario.class)
-					.setParameter("descricao", usuario.getNome().toUpperCase())
+					.createNamedQuery("Usuario.findByNome", Usuario.class)
+					.setParameter("nome", usuario.getNome().toUpperCase())
 					.getSingleResult();
 			
-			throw new CustomRuntimeException("Já existe usuario cadastrada com esta descrição.");
+			throw new CustomRuntimeException("Já existe usuario cadastrada com este nome.");
 		} catch (CustomRuntimeException e) {
 			throw e;
 		} catch (NoResultException e) {
 			// OK!
 		} catch (NonUniqueResultException e) {
-			throw new CustomRuntimeException("Mais de uma usuario encontrada com esta descrição.");
+			throw new CustomRuntimeException("Mais de um usuário encontrado com este nome.");
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, e.getMessage(), e);
 			throw new CustomRuntimeException("Não foi possível cadastrar a usuario.");
