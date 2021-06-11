@@ -46,6 +46,13 @@ CREATE TABLE solicitacoes (
 	FOREIGN KEY (status_id) REFERENCES status_solicitacao (id) 
 );
 
+CREATE TABLE usuarios (
+	id SERIAL,
+	nome VARCHAR(128),
+	ativo BOOLEAN,
+	PRIMARY KEY (id)
+);
+
 -- Dados de teste
 INSERT INTO categorias (descricao, ativa)
 VALUES
