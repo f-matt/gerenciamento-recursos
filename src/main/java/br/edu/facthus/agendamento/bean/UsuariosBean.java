@@ -25,7 +25,7 @@ public class UsuariosBean {
 		return entityManager.find(Usuario.class, codigo);
 	}
 	
-	public List<Usuario> buscaPorDescricao(String nome) {
+	public List<Usuario> buscaPorNome(String nome) {
 		return entityManager
 				.createNamedQuery("Usuario.findByNome", 
 						Usuario.class)
