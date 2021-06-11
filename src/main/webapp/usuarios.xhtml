@@ -18,11 +18,15 @@
 			<p:panel header="Registro de usuarios">
 				<div class="ui-g">
 					<div class="ui-g-2">
-						<p:outputLabel value="Nome:"/>
+						<p:outputLabel for="nome" value="Nome:"/>
 					</div>
 					<div class="ui-g-10">
-						<p:inputText  />
-						<p:commandButton  styleClass="btn-search" icon="pi pi-search" title="Pesquisar por nome" />
+						<p:inputText id="nome" value="#{usuariosView.nomePesquisa}"  />
+						<p:commandButton styleClass="btn-search" 
+							icon="pi pi-search" 
+							title="Pesquisar por nome"
+							action="#{usuariosView.pesquisaPorNome}"
+							update="tblUsuarios" />
 					</div>
 					<div class="ui-g-12">
 						<p:commandButton icon="pi pi-user-plus"
@@ -31,20 +35,20 @@
 					</div>
 					
 					<!-- Table de usuarios -->
-					<p:dataTable
-						var="c"
-						value="ok">
+					<p:dataTable id="tblUsuarios"
+						value="#{usuariosView.usuarios}"
+						var="u">
 						
 						<p:column headerText="Código">
-							<h:outputText value="1"></h:outputText>
+							<h:outputText value="#{u.id}" />
 						</p:column>
 						
 						<p:column headerText="Nome">
-							<h:outputText value="Lucas"></h:outputText>
+							<h:outputText value="#{u.nome}" />
 						</p:column>
 						
-						<p:column headerText="Email">
-							<h:outputText value="Lucas@gmail.com"></h:outputText>
+						<p:column headerText="Ativo">
+							<h:outputText value="#{u.ativo}" />
 						</p:column>
 						
 						<p:column headerText="Detalhes">
