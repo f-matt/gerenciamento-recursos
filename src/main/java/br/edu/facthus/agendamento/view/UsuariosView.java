@@ -13,7 +13,6 @@ import javax.inject.Named;
 import org.primefaces.PrimeFaces;
 
 import br.edu.facthus.agendamento.bean.UsuariosBean;
-import br.edu.facthus.agendamento.entity.Categoria;
 import br.edu.facthus.agendamento.entity.Usuario;
 import br.edu.facthus.agendamento.util.CustomRuntimeException;
 import br.edu.facthus.agendamento.util.FacesUtils;
@@ -25,7 +24,7 @@ public class UsuariosView implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private static final Logger logger = 
-			Logger.getLogger(CategoriasView.class.getName());
+			Logger.getLogger(UsuariosView.class.getName());
 	
 	@Inject
 	private UsuariosBean usuariosBean;
@@ -46,15 +45,15 @@ public class UsuariosView implements Serializable {
 				return;
 			}
 			
-			Categoria c = usuariosBean
+			Usuario u = usuariosBean
 					.buscaPorCodigo(codigoPesquisa);
-			if (c == null) {
+			if (u == null) {
 				FacesUtils
 					.showError("Nenhum usuário encontrado com o código informado.");
 				return;
 			}
 			
-			usuarios.add(c);
+			usuarios.add(u);
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, e.getMessage(), e);
 			FacesUtils.showError("Ocorreu um erro ao fazer a pesquisa.");
