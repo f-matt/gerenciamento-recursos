@@ -1,0 +1,55 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui" 
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+	<h:form id="formDlgUsuarios">
+		<p:dialog header="Registro de usuarios" 
+			modal="true"
+			widgetVar="usuariosDialog" 
+			responsive="true">
+			<p:outputPanel id="pnlUsuario">
+				<div class="ui-g">
+					<div class="ui-g-4">
+						<p:outputLabel 
+						 for="nome"
+						 value="Nome:" />
+					</div>
+					<div class="ui-g-8">
+						<p:inputText 
+						id="nome"
+						value="#{usuariosView.usuario.nome}" />
+					</div>
+					<h:panelGroup rendered="#{usuariosView.usuario.id != null}">
+						<div class="ui-g-4">
+							<p:outputLabel 
+							for="ativo"
+							value="Ativo:" />
+						</div>
+						<div class="ui-g-8">
+							<p:toggleSwitch 
+							id="ativo" 
+							value="#{usuariosView.usuario.ativo}"/>
+						</div>
+					</h:panelGroup>
+					<div class="ui-g-12">
+						<p:commandButton id="btnCadastra" 
+							value="Salvar"
+							styleClass="btn-save"
+							action="#{usuariosView.salvaUsuario}"
+							icon="pi pi-check"
+							update="pnlUsuario, formUsuarios" />
+						<p:commandButton  
+							value="Cancelar"
+							styleClass="btn-cancel"
+							icon="pi pi-times"
+							onclick="PF('usuariosDialog').hide()" />
+					</div>
+				</div>
+			</p:outputPanel>
+		</p:dialog>
+	</h:form>
+</ui:composition>

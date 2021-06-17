@@ -36,7 +36,7 @@ public class UsuariosBean {
 
 	public List<Usuario> buscaUsuarios() {
 		return entityManager
-				.createQuery("SELECT c FROM Usuario c", Usuario.class)
+				.createQuery("SELECT u FROM Usuario u", Usuario.class)
 				.getResultList();
 	}
 	
