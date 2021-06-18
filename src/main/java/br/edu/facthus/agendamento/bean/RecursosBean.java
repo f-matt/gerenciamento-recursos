@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import br.edu.facthus.agendamento.entity.Categoria;
+import br.edu.facthus.agendamento.entity.Item;
 import br.edu.facthus.agendamento.entity.Recurso;
 
 @Stateless
@@ -44,10 +45,20 @@ public class RecursosBean {
 	}
 	
 	public List<Recurso> buscaPorCategoria(Categoria categoria) {
-		return entityManager
+		List<Recurso> recursos = entityManager
 				.createNamedQuery("Recurso.findByCategoria", Recurso.class)
 				.setParameter("categoria", categoria)
 				.getResultList();
+		
+		for (Recurso recurso : recursos) {
+			recurso.setItensDisponiveis(entityManager
+					.createNamedQuery("Item.findDisponiveisByRecurso", Item.class)
+					.setParameter("recurso", recurso)
+					.getResultList()
+					.size());
+		}
+		
+		return recursos;
 	}
 
 }

@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "recursos")
@@ -41,6 +42,12 @@ public class Recurso implements Serializable {
 	@JoinColumn(name = "categoria_id")
 	private Categoria categoria;
 	
+	@Transient
+	private int itensDisponiveis;
+	
+	/*
+	 * Auto-generated
+	 */
 	@Override
 	public String toString() {
 		return "Recurso [id=" + id + "]";
@@ -101,6 +108,14 @@ public class Recurso implements Serializable {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+
+	public int getItensDisponiveis() {
+		return itensDisponiveis;
+	}
+
+	public void setItensDisponiveis(int itensDisponiveis) {
+		this.itensDisponiveis = itensDisponiveis;
 	}
 
 }
