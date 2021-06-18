@@ -37,6 +37,7 @@ public class ItensBean {
 	
 	public void salvaItem(Item item) {
 		item.setAtiva(true);
+		item.setDisponivel(true);
 		entityManager.persist(item);
 	}
 	

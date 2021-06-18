@@ -21,6 +21,7 @@ CREATE TABLE itens (
 	id SERIAL,
 	descricao VARCHAR (128),
 	ativo BOOLEAN,
+	disponivel BOOLEAN,
 	recurso_id INTEGER,
 	PRIMARY KEY (id),
 	FOREIGN KEY (recurso_id)

@@ -20,6 +20,12 @@ import javax.persistence.Table;
 			query = "SELECT i "
 					+ "FROM Item i "
 					+ "WHERE UPPER(i.descricao) LIKE :descricao "
+					+ "ORDER BY i.descricao"),
+	@NamedQuery(name = "Item.findDisponiveisByRecurso",
+			query = "SELECT i "
+					+ "FROM Item i "
+					+ "WHERE i.recurso = :recurso "
+					+ "AND i.disponivel = TRUE "
 					+ "ORDER BY i.descricao")
 })
 public class Item implements Serializable {
@@ -35,12 +41,15 @@ public class Item implements Serializable {
 	@Column(name = "ativo")
 	private Boolean ativa;
 	
+	private Boolean disponivel;
+	
 	@ManyToOne
 	@JoinColumn(name = "recurso_id")
 	private Recurso recurso;
-
 	
-	
+	/*
+	 * Auto-generated
+	 */
 	@Override
 	public String toString() {
 		return "Item [id=" + id + "]";
@@ -100,6 +109,14 @@ public class Item implements Serializable {
 
 	public void setAtiva(Boolean ativa) {
 		this.ativa = ativa;
+	}
+
+	public Boolean getDisponivel() {
+		return disponivel;
+	}
+
+	public void setDisponivel(Boolean disponivel) {
+		this.disponivel = disponivel;
 	}
 
 }
