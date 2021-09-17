@@ -1,4 +1,4 @@
-# Projeto DSOO - 2021/01
+# Projeto: Gerenciamento de Recursos
 
 **Introdução**
 
