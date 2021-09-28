@@ -9,20 +9,46 @@
 	<h:form id="formDlgUsuarios">
 		<p:dialog header="Registro de usuarios" 
 			modal="true"
-			widgetVar="usuariosDialog" 
-			responsive="true">
+			widgetVar="usuariosDialog"
+			width="80%">
 			<p:outputPanel id="pnlUsuario">
 				<div class="ui-g">
 					<div class="ui-g-4">
-						<p:outputLabel 
-						 for="nome"
-						 value="Nome:" />
+						<p:outputLabel for="nome"
+							value="Nome:" />
 					</div>
 					<div class="ui-g-8">
-						<p:inputText 
-						id="nome"
-						value="#{usuariosView.usuario.nome}" />
+						<p:inputText id="nome"
+							value="#{usuariosView.usuario.nome}" />
 					</div>
+					
+					<div class="ui-g-4">
+						<p:outputLabel for="login"
+							value="Usuário:" />
+					</div>
+					<div class="ui-g-8">
+						<p:inputText id="login"
+							value="#{usuariosView.usuario.login}" />
+					</div>
+					
+					<div class="ui-g-4">
+						<p:outputLabel for="senha"
+							value="Senha:" />
+					</div>
+					<div class="ui-g-8">
+						<p:inputText id="senha"
+							value="#{usuariosView.usuario.password}" />
+					</div>
+					
+					<div class="ui-g-4">
+						<p:outputLabel for="perfil"
+							value="Perfil:" />
+					</div>
+					<div class="ui-g-8">
+						<p:inputText id="perfil"
+							value="#{usuariosView.usuario.perfil}" />
+					</div>
+					
 					<h:panelGroup rendered="#{usuariosView.usuario.id != null}">
 						<div class="ui-g-4">
 							<p:outputLabel 

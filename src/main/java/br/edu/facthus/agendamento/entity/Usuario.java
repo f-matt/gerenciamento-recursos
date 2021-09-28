@@ -29,8 +29,17 @@ public class Usuario implements Serializable{
 	
 	private String nome;
 	
+	private String login;
+	
+	private String password;
+	
+	private String perfil;
+	
 	private Boolean ativo;
 	
+	/*
+	 * Auto-generated
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -84,4 +93,29 @@ public class Usuario implements Serializable{
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
 	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(String perfil) {
+		this.perfil = perfil;
+	}
+
 }

@@ -86,6 +86,10 @@ public class UsuariosView implements Serializable {
 	public void salvaUsuario() {
 		try {
 			if (usuario.getId() == null) {
+				logger.info(usuario.getNome());
+				logger.info(usuario.getLogin());
+				logger.info(usuario.getPassword());
+				logger.info(usuario.getPerfil());
 				usuariosBean.salvaUsuario(usuario);
 				usuario = new Usuario();
 				FacesUtils.showInfo("Usuário cadastrado com sucesso!");
