@@ -17,7 +17,13 @@ import javax.persistence.Table;
 			query = "SELECT u "
 					+ "FROM Usuario u "
 					+ "WHERE UPPER(u.nome) LIKE :nome "
-					+ "ORDER BY u.nome")
+					+ "ORDER BY u.nome"),
+	
+	@NamedQuery(name = "Usuario.findByLogin",
+			query = "SELECT u "
+					+ "FROM Usuario u "
+					+ "WHERE UPPER(u.login) LIKE :login "
+					+ "ORDER BY u.login")
 })
 public class Usuario implements Serializable{
 	
