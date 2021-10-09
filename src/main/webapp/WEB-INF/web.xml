@@ -20,4 +20,34 @@
 		<param-name>primefaces.THEME</param-name>
 		<param-value>nova-light</param-value>
 	</context-param>
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>default</web-resource-name>
+			<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint />
+	</security-constraint>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>admin</web-resource-name>
+			<url-pattern>/javax.faces.resource/*</url-pattern>
+			<url-pattern>/index.jsf</url-pattern>
+			<url-pattern>/categorias/index.jsf</url-pattern>
+			<url-pattern>/erros/erro-interno.jsf</url-pattern>
+			<url-pattern>/itens/index.jsf</url-pattern>
+			<url-pattern>/recursos/index.jsf</url-pattern>
+			<url-pattern>/solicitacoes/index.jsf</url-pattern>
+			<url-pattern>/solicitacoes/nova.jsf</url-pattern>
+			<url-pattern>/usuarios/index.jsf</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>ADMIN</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<security-role>
+		<role-name>ADMIN</role-name>
+	</security-role>
 </web-app>
