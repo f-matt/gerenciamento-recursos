@@ -1,4 +1,4 @@
-CREATE DATABASE db_agendamento;
+-- CREATE DATABASE agendamento;
 
 CREATE TABLE categorias (
 	id SERIAL,
