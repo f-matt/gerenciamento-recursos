@@ -1,11 +1,15 @@
 package br.edu.facthus.agendamento.view;
 
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -13,6 +17,7 @@ import javax.inject.Named;
 import org.primefaces.PrimeFaces;
 
 import br.edu.facthus.agendamento.bean.UsuariosBean;
+import br.edu.facthus.agendamento.entity.Perfil;
 import br.edu.facthus.agendamento.entity.Usuario;
 import br.edu.facthus.agendamento.util.CustomRuntimeException;
 import br.edu.facthus.agendamento.util.FacesUtils;
@@ -37,6 +42,22 @@ public class UsuariosView implements Serializable {
 	
 	private String nomePesquisa;
 	
+	private List<Perfil> perfis;
+	
+	private String password;
+	
+	@PostConstruct
+	public void init() {
+		try {
+			perfis = usuariosBean.buscaPerfis();
+		} catch (CustomRuntimeException e) {
+			FacesUtils.showError(e.getMessage());
+		} catch (Exception e) {
+			logger.log(Level.SEVERE, e.getMessage(), e);
+			FacesUtils.showError("Não foi possível buscar os perfis.");
+		}
+	}
+		
 	public void pesquisaPorCodigo() {
 		try {
 			usuarios = new ArrayList<>();
@@ -84,12 +105,19 @@ public class UsuariosView implements Serializable {
 	}
 	
 	public void salvaUsuario() {
+		if (password == null || password.isBlank()) {
+			FacesUtils.showError("É necessário informar a senha.");
+			return;
+		}
+		
 		try {
+			// Criptografa a senha do usuário
+			MessageDigest digest = MessageDigest.getInstance("SHA-256");
+			byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+			String encoded = Base64.getEncoder().encodeToString(hash);
+			usuario.setPassword(encoded);
+			
 			if (usuario.getId() == null) {
-				logger.info(usuario.getNome());
-				logger.info(usuario.getLogin());
-				logger.info(usuario.getPassword());
-				logger.info(usuario.getPerfil());
 				usuariosBean.salvaUsuario(usuario);
 				usuario = new Usuario();
 				FacesUtils.showInfo("Usuário cadastrado com sucesso!");
@@ -141,6 +169,22 @@ public class UsuariosView implements Serializable {
 
 	public void setNomePesquisa(String nomePesquisa) {
 		this.nomePesquisa = nomePesquisa;
+	}
+
+	public List<Perfil> getPerfis() {
+		return perfis;
+	}
+
+	public void setPerfis(List<Perfil> perfis) {
+		this.perfis = perfis;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 }

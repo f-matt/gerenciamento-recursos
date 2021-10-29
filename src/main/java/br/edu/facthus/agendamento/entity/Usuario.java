@@ -6,25 +6,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "usuarios")
-@NamedQueries({
-	@NamedQuery(name = "Usuario.findByNome",
-			query = "SELECT u "
-					+ "FROM Usuario u "
-					+ "WHERE UPPER(u.nome) LIKE :nome "
-					+ "ORDER BY u.nome"),
-	
-	@NamedQuery(name = "Usuario.findByLogin",
-			query = "SELECT u "
-					+ "FROM Usuario u "
-					+ "WHERE UPPER(u.login) LIKE :login "
-					+ "ORDER BY u.login")
-})
+@NamedQuery(name = "Usuario.findByNome",
+		query = "SELECT u "
+				+ "FROM Usuario u "
+				+ "WHERE UPPER(u.nome) LIKE :nome "
+				+ "ORDER BY u.nome")
+@NamedQuery(name = "Usuario.findByLogin",
+		query = "SELECT u "
+				+ "FROM Usuario u "
+				+ "WHERE UPPER(u.login) LIKE :login "
+				+ "ORDER BY u.login")
 public class Usuario implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -39,10 +37,12 @@ public class Usuario implements Serializable{
 	
 	private String password;
 	
-	private String perfil;
-	
 	private Boolean ativo;
 	
+	@ManyToOne
+	@JoinColumn(name = "perfil_id")
+	private Perfil perfil;
+		
 	/*
 	 * Auto-generated
 	 */
@@ -116,11 +116,11 @@ public class Usuario implements Serializable{
 		this.password = password;
 	}
 
-	public String getPerfil() {
+	public Perfil getPerfil() {
 		return perfil;
 	}
 
-	public void setPerfil(String perfil) {
+	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
 	}
 

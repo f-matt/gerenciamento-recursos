@@ -37,7 +37,7 @@
 					</div>
 					<div class="ui-g-8">
 						<p:password id="senha"
-							value="#{usuariosView.usuario.password}" />
+							value="#{usuariosView.password}" />
 					</div>
 					
 					<div class="ui-g-4">
@@ -45,8 +45,15 @@
 							value="Perfil:" />
 					</div>
 					<div class="ui-g-8">
-						<p:inputText id="perfil"
-							value="#{usuariosView.usuario.perfil}" />
+						<p:selectOneMenu id="perfil" 
+							value="#{usuariosView.usuario.perfil}"
+							converter="omnifaces.SelectItemsConverter">
+					
+							<f:selectItems value="#{usuariosView.perfis}" 
+								var="perfil"
+	                            itemLabel="#{perfil.nome}" 
+	                            itemValue="#{perfil}" />
+						</p:selectOneMenu>
 					</div>
 					
 					<h:panelGroup rendered="#{usuariosView.usuario.id != null}">
