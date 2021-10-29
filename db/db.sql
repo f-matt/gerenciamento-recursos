@@ -47,12 +47,24 @@ CREATE TABLE solicitacoes (
 	FOREIGN KEY (status_id) REFERENCES status_solicitacao (id) 
 );
 
+CREATE TABLE perfis (
+	id SERIAL,
+	nome VARCHAR(32) UNIQUE, 
+	PRIMARY KEY (id)
+);
+
+
 CREATE TABLE usuarios (
 	id SERIAL,
 	nome VARCHAR(128),
+	login VARCHAR(32) UNIQUE,
+	password VARCHAR(256),
 	ativo BOOLEAN,
-	PRIMARY KEY (id)
+	perfil_id INTEGER,
+	PRIMARY KEY (id),
+	FOREIGN KEY (perfil_id) REFERENCES perfis (id)
 );
+
 
 -- Dados de teste
 INSERT INTO categorias (descricao, ativa)
@@ -72,3 +84,9 @@ VALUES
 ('ATENDIDA'),
 ('CONCLUÍDA'),
 ('CANCELADA');
+
+INSERT INTO perfis (nome)
+VALUES
+('ADMINISTRADOR'),
+('OPERADOR'),
+('SOLICITANTE');

@@ -10,13 +10,15 @@ import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
 
+import br.edu.facthus.agendamento.entity.Perfil;
 import br.edu.facthus.agendamento.entity.Usuario;
 import br.edu.facthus.agendamento.util.CustomRuntimeException;
 
 @Stateless
 public class UsuariosBean {
-	private static final Logger logger = Logger.getLogger(UsuariosBean.class.getName());
 	
+	private static final Logger logger = 
+			Logger.getLogger(UsuariosBean.class.getName());
 	
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -66,4 +68,16 @@ public class UsuariosBean {
 	public void atualizaUsuario(Usuario usuario) {
 		entityManager.merge(usuario);
 	}
+	
+	public List<Perfil> buscaPerfis() {
+		try {
+			return entityManager
+					.createNamedQuery("Perfil.findAll", Perfil.class)
+					.getResultList();
+		} catch (Exception e) {
+			logger.log(Level.SEVERE, e.getMessage(), e);
+			throw new CustomRuntimeException("Ocorreu um erro ao buscar os perfis.");
+		}
+	}
+	
 }
