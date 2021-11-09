@@ -84,6 +84,16 @@ public class CategoriasView implements Serializable {
     }
 	
 	public void salvaCategoria() {
+		if (categoria == null) {
+			FacesUtils.showError("É necessário selecionar uma categoria.");
+			return;
+		}
+		
+		if (categoria.getDescricao() == null || categoria.getDescricao().isBlank()) {
+			FacesUtils.showError("É necessário informar a descrição.");
+			return;
+		}
+		
 		try {
 			if (categoria.getId() == null) {
 				categoriasBean.salvaCategoria(categoria);
