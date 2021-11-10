@@ -28,11 +28,19 @@
 		</web-resource-collection>
 		<auth-constraint />
 	</security-constraint>
+	
+	<security-constraint>
+    	<web-resource-collection>
+    		<web-resource-name>anon</web-resource-name>
+        	<url-pattern>/javax.faces.resource/*</url-pattern>
+        	<url-pattern>/acesso-negado.jsf</url-pattern>
+        	<url-pattern>/login.jsf</url-pattern>
+    	</web-resource-collection>
+	</security-constraint>
 
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>admin</web-resource-name>
-			<url-pattern>/javax.faces.resource/*</url-pattern>
 			<url-pattern>/index.jsf</url-pattern>
 			<url-pattern>/categorias/index.jsf</url-pattern>
 			<url-pattern>/erros/erro-interno.jsf</url-pattern>
@@ -43,11 +51,16 @@
 			<url-pattern>/usuarios/index.jsf</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
-			<role-name>ADMIN</role-name>
+			<role-name>ADMINISTRADOR</role-name>
 		</auth-constraint>
 	</security-constraint>
 
 	<security-role>
-		<role-name>ADMIN</role-name>
+		<role-name>ADMINISTRADOR</role-name>
 	</security-role>
+	
+	<error-page>
+		<error-code>403</error-code>
+		<location>/acesso-negado.jsf</location>
+	</error-page>
 </web-app>

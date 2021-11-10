@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui:composition template="/template/main.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui">
+	
+	<ui:define name="title">Login</ui:define>
+
+	<ui:define name="content">
+		<h3>Login</h3>
+		
+		<h:form>
+			<p:growl id="growl" showDetail="false" sticky="false">
+				
+				<p:autoUpdate />
+			</p:growl>
+			
+			<h:panelGroup layout="block" rendered="#{param['error']}">
+				Usuário/senha inválidos.
+			</h:panelGroup>
+	           		            		
+	        <h:panelGroup layout="block" rendered="#{param['logout']}">
+				Logout efetuado com sucesso!
+			</h:panelGroup>
+			
+			<div class="ui-g">
+				<div class="ui-g-2">
+					<p:outputLabel for="username"
+						value="Usuário:" />
+				</div>
+				<div class="ui-g-10">
+					<p:inputText id="username" 
+							value="#{authView.username}"
+					   		size="20" 
+					   		required="true" />
+				</div>
+			    		
+			    <div class="ui-g-2">
+					<p:outputLabel for="password" 
+				   		value="Senha:" />
+				</div>
+				<div class="ui-g-10">
+					<p:password id="password"
+							value="#{authView.password}"
+				   			size="20" 
+				   			required="true" 
+				   			label="Senha" />
+				</div>
+			   		
+			   	<div class="ui-g-12">
+					<p:commandButton id="btnLogin"
+						value="Login"
+						ajax="false"
+						action="#{authView.login}" />
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
