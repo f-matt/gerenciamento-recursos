@@ -110,6 +110,10 @@ public class UsuariosView implements Serializable {
 			return;
 		}
 		
+		if (usuario == null) {
+			FacesUtils.showError("É necessário informar o usuário.");
+			return;
+		}
 		try {
 			// Criptografa a senha do usuário
 			MessageDigest digest = MessageDigest.getInstance("SHA-256");
