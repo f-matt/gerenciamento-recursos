@@ -43,11 +43,18 @@
 				<div id="header" class="ui-g-12"> 
 					<div class="ui-g-11 headerText">Sistema de Agendamento</div>
 					<div class="ui-g-1 rightAlign">
-						<span class="pi pi-bell" />
+						<h:form>
+							<p:commandButton id="logout"
+								action="#{authView.logout}"
+								icon="pi pi-sign-out" 
+								title="Sair"
+								styleClass="rounded-button ui-button-flat"
+								style="color:white" />
+						</h:form>
 					</div>
 				</div>
 				
-				<div class="ui-g-12">
+				<p:outputPanel styleClass="ui-g-12" rendered="#{request.userPrincipal != null}">
 					<h:form id="formTemplate">
 						<p:menubar styleClass="noBorder">
 							<p:menuitem icon="pi pi-home" 
@@ -77,10 +84,10 @@
 								outcome="/usuarios/index" />
 						</p:menubar>
 					</h:form>
-				</div>
+				</p:outputPanel>
 			</div>
 		
-			<div id="content" class="ui-g">
+			<div id="content" class="ui-g" style="margin-top:50px">
 				<div class="ui-g-12">
 					<ui:insert name="content">Bem vindo!</ui:insert>
 				</div>

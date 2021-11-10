@@ -47,6 +47,9 @@ CREATE TABLE solicitacoes (
 	FOREIGN KEY (status_id) REFERENCES status_solicitacao (id) 
 );
 
+-- Autenticação/autorização
+CREATE EXTENSION pgcrypto;
+
 CREATE TABLE perfis (
 	id SERIAL,
 	nome VARCHAR(32) UNIQUE, 
@@ -64,6 +67,8 @@ CREATE TABLE usuarios (
 	PRIMARY KEY (id),
 	FOREIGN KEY (perfil_id) REFERENCES perfis (id)
 );
+
+
 
 
 -- Dados de teste
@@ -90,3 +95,6 @@ VALUES
 ('ADMINISTRADOR'),
 ('OPERADOR'),
 ('SOLICITANTE');
+
+-- Exemplo de criação de usuário ADMIN
+-- INSERT INTO usuarios (login, password, perfil_id) VALUES ('admin', encode(digest('123456', 'sha256'), 'base64'), 1);
