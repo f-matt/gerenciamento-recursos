@@ -20,7 +20,10 @@
 					<div class="ui-g-8">
 						<p:inputText id="nome"
 						    required="true"
-							value="#{usuariosView.usuario.nome}" />
+							value="#{usuariosView.usuario.nome}">
+							
+							<f:validateRegex pattern="[a-z A-Z]+"/>
+							</p:inputText>
 					</div>
 					
 					<div class="ui-g-4">
