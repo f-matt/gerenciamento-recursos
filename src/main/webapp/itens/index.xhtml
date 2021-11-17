@@ -14,12 +14,12 @@
 		
 		<h:form id="formItens">
 			<p:panel header="Pesquisa de Itens">
-				<div class="ui-g">
+				<div class="p-grid">
 					<!-- Pesquisa Código do Item-->
-					<div class="ui-g-2">
+					<div class="p-col-2">
 						<p:outputLabel for="idItens" value="Código"></p:outputLabel>
 					</div>
-					<div class="ui-g-10">
+					<div class="p-col-10">
 						<p:inputText id="idItens" 
 						value="#{itensView.codigoPesquisa}" />
 						<p:commandButton styleClass="btn-search" 
@@ -29,11 +29,11 @@
     					update="tblItens"/>
 					</div>
 					<!-- Pesquisa Descrição do Item -->
-					<div class="ui-g-2">
+					<div class="p-col-2">
     					<p:outputLabel for="descricao" 
     					value="Descrição" />
     				</div>
-    				<div class="ui-g-10">
+    				<div class="p-col-10">
     					<p:inputText id="descricao"	
     					value="#{itensView.descricaoPesquisa}" />
     					<p:commandButton styleClass="btn-search" 
@@ -43,7 +43,7 @@
     					update="tblItens"/>
     				</div>
     				<!-- Botão Adicionar Item -->
-    				<div class="ui-g-12">
+    				<div class="p-col-12">
     					<p:commandButton styleClass="btn-add" icon="pi pi-plus"	
     					title="Novo Item"
     					actionListener="#{itensView.novoItem}"
