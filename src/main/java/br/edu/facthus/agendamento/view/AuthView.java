@@ -43,23 +43,27 @@ public class AuthView implements Serializable {
 	private FacesContext facesContext;
 	
 	public void login() {
+		logger.info("metododelogin");	
 		try {
 			if (securityContext == null) { 
 				FacesUtils.showError("Não foi possí­vel carregar o contexto de autenticação.");
 				return;
 			}
-			
+			logger.info("securitycontexok");
 			Credential credential = new UsernamePasswordCredential(username, password);
 			AuthenticationStatus status = securityContext.authenticate(getRequestFrom(facesContext),
 					getResponseFrom(facesContext), AuthenticationParameters.withParams().credential(credential));
 			switch (status) {
 	        case SEND_CONTINUE:
+	        	logger.info("SendContinue");
 	        	facesContext.responseComplete();
 	            break;
 	        case SEND_FAILURE:
+	        	logger.info("SendFailure");
 	        	FacesUtils.showError("Usuário/senha inválidos");
 	            break;
 	        case SUCCESS:
+	        	logger.info("Sucess");
 	            externalContext.redirect(externalContext.getRequestContextPath() + "/index.jsf");
 	            break;
 	        default:
