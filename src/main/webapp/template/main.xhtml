@@ -11,6 +11,7 @@
 		<h:outputStylesheet name="primeicons/primeicons.css"
 			library="primefaces" />
 		<h:outputStylesheet name="css/main.css" />
+		<h:outputStylesheet name="css/primeflex.css" />
 		<h:outputScript name="js/main.js" />
 		<script>
 			var ctx = "#{request.contextPath}"
@@ -87,10 +88,8 @@
 				</p:outputPanel>
 			</div>
 		
-			<div id="content" class="ui-g" style="margin-top:50px">
-				<div class="ui-g-12">
-					<ui:insert name="content">Bem vindo!</ui:insert>
-				</div>
+			<div id="content" style="margin-top:50px">
+				<ui:insert name="content">Bem vindo!</ui:insert>
 			</div>
 				
 			<div id="footer" class="ui-g">
