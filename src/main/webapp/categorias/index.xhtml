@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<ui:composition template="../template/main.xhtml"
+<ui:composition template="/template/main.xhtml"
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -14,11 +14,11 @@
 		
 		<h:form id="formCategorias">
 			<p:panel header="Pesquisa de Categorias">
-				<div class="ui-g">
-    				<div class="ui-g-2">
+				<div class="p-grid">
+    				<div class="p-col-2">
     					<p:outputLabel for="idCategoria" value="Código:" />
     				</div>
-    				<div class="ui-g-10">
+    				<div class="p-col-10">
     					<p:inputText id="idCategoria" 
     						value="#{categoriasView.codigoPesquisa}" />
     					<p:commandButton styleClass="btn-search" 
@@ -27,11 +27,11 @@
     						action="#{categoriasView.pesquisaPorCodigo}"
     						update="tblCategorias" />
     				</div>
-    				<div class="ui-g-2">
+    				<div class="p-col-2">
     					<p:outputLabel for="descricao" 
     						value="Descrição:" />
     				</div>
-    				<div class="ui-g-10">
+    				<div class="p-col-10">
     					<p:inputText id="descricao" 
     						value="#{categoriasView.descricaoPesquisa}" />
     					<p:commandButton styleClass="btn-search" 
@@ -41,7 +41,7 @@
     						update="tblCategorias"/>
     				</div>
     				
-    				<div class="ui-g-12">
+    				<div class="p-col-12">
     					<p:commandButton styleClass="btn-add" title="Nova Categoria" 
     						icon="pi pi-plus" 
     						actionListener="#{categoriasView.novaCategoria}"

@@ -13,29 +13,29 @@
 			responsive="true">
 			
 			<p:outputPanel id="pnlCategoria">
-				<div class="ui-g">
-					<div class="ui-g-4">
+				<div class="p-grid">
+					<div class="p-col-4">
 						<p:outputLabel for="descricao"
 							value="Descrição:" />
 					</div>
-					<div class="ui-g-8">
+					<div class="p-col-8">
 						<p:inputText id="descricao"
 							required="true"
 							value="#{categoriasView.categoria.descricao}" />
 					</div>
 					
 					<h:panelGroup rendered="#{categoriasView.categoria.id != null}">
-						<div class="ui-g-4">
+						<div class="p-col-4">
 							<p:outputLabel for="ativa"
 								value="Ativa:" />
 						</div>
-						<div class="ui-g-8">
+						<div class="p-col-8">
 							<p:toggleSwitch id="ativa" 
 								value="#{categoriasView.categoria.ativa}"/>
 						</div>
 					</h:panelGroup>
 					
-					<div class="ui-g-12">
+					<div class="p-col-12">
 						<p:commandButton id="btnCadastra" 
 							value="Salvar"
 							styleClass="btn-save"
