@@ -12,12 +12,12 @@
 			widgetVar="usuariosDialog"
 			width="80%">
 			<p:outputPanel id="pnlUsuario">
-				<div class="ui-g">
-					<div class="ui-g-4">
+				<div class="p-grid">
+					<div class="p-col-4">
 						<p:outputLabel for="nome"
 							value="Nome:" />
 					</div>
-					<div class="ui-g-8">
+					<div class="p-col-8">
 						<p:inputText id="nome"
 						    required="true"
 							value="#{usuariosView.usuario.nome}">
@@ -26,30 +26,30 @@
 							</p:inputText>
 					</div>
 					
-					<div class="ui-g-4">
+					<div class="p-col-4">
 						<p:outputLabel for="login"
 							value="Usuário:" />
 					</div>
-					<div class="ui-g-8">
+					<div class="p-col-8">
 						<p:inputText id="login"
 						    required="true"
 							value="#{usuariosView.usuario.login}" />
 					</div>
 					
-					<div class="ui-g-4">
+					<div class="p-col-4">
 						<p:outputLabel for="senha"
 							value="Senha:" />
 					</div>
-					<div class="ui-g-8">
+					<div class="p-col-8">
 						<p:password id="senha"
 							value="#{usuariosView.password}" />
 					</div>
 					
-					<div class="ui-g-4">
+					<div class="p-col-4">
 						<p:outputLabel for="perfil"
 							value="Perfil:" />
 					</div>
-					<div class="ui-g-8">
+					<div class="p-col-8">
 						<p:selectOneMenu id="perfil" 
 							value="#{usuariosView.usuario.perfil}"
 							converter="omnifaces.SelectItemsConverter">
@@ -62,18 +62,18 @@
 					</div>
 					
 					<h:panelGroup rendered="#{usuariosView.usuario.id != null}">
-						<div class="ui-g-4">
+						<div class="p-col-4">
 							<p:outputLabel 
 							for="ativo"
 							value="Ativo:" />
 						</div>
-						<div class="ui-g-8">
+						<div class="p-col-8">
 							<p:toggleSwitch 
 							id="ativo" 
 							value="#{usuariosView.usuario.ativo}"/>
 						</div>
 					</h:panelGroup>
-					<div class="ui-g-12">
+					<div class="p-col-12">
 						<p:commandButton id="btnCadastra" 
 							value="Salvar"
 							styleClass="btn-save"
