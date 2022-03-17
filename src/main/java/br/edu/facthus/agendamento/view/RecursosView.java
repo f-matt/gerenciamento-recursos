@@ -74,7 +74,7 @@ public class RecursosView implements Serializable {
 	public void pesquisaPorDescricao() {
 		try {
 			recursos = new ArrayList<>();
-			if (descricaoPesquisa == null || descricaoPesquisa.isBlank()) {
+			if (descricaoPesquisa == null || descricaoPesquisa.isEmpty()) {
 				FacesUtils.showError("É necessário informar a descrição.");
 				return;
 			}

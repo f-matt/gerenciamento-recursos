@@ -63,7 +63,7 @@ public class CategoriasView implements Serializable {
 	public void pesquisaPorDescricao() {
 		try {
 			categorias = new ArrayList<>();
-			if (descricaoPesquisa == null || descricaoPesquisa.isBlank()) {
+			if (descricaoPesquisa == null || descricaoPesquisa.isEmpty()) {
 				FacesUtils.showError("É necessário informar a descrição.");
 				return;
 			}
@@ -89,7 +89,7 @@ public class CategoriasView implements Serializable {
 			return;
 		}
 		
-		if (categoria.getDescricao() == null || categoria.getDescricao().isBlank()) {
+		if (categoria.getDescricao() == null || categoria.getDescricao().isEmpty()) {
 			FacesUtils.showError("É necessário informar a descrição.");
 			return;
 		}

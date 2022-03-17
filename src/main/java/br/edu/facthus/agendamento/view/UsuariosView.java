@@ -84,7 +84,7 @@ public class UsuariosView implements Serializable {
 	public void pesquisaPorNome() {
 		try {
 			usuarios = new ArrayList<>();
-			if (nomePesquisa == null || nomePesquisa.isBlank()) {
+			if (nomePesquisa == null || nomePesquisa.isEmpty()) {
 				FacesUtils.showError("É necessário informar o nome.");
 				return;
 			}
@@ -105,7 +105,7 @@ public class UsuariosView implements Serializable {
 	}
 	
 	public void salvaUsuario() {
-		if (password == null || password.isBlank()) {
+		if (password == null || password.isEmpty()) {
 			FacesUtils.showError("É necessário informar a senha.");
 			return;
 		}
