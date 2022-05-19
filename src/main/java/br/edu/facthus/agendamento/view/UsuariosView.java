@@ -129,6 +129,8 @@ public class UsuariosView implements Serializable {
 				usuariosBean.atualizaUsuario(usuario);
 				FacesUtils.showInfo("Usuário atualizado com sucesso!");
 			}
+
+			PrimeFaces.current().executeScript("PF('usuariosDialog').hide()");
 		} catch (CustomRuntimeException e) {
 			FacesUtils.showError(e.getMessage());
 		} catch (Exception e) {
