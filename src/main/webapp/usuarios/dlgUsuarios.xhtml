@@ -20,10 +20,7 @@
 					<div class="p-col-8">
 						<p:inputText id="nome"
 						    required="true"
-							value="#{usuariosView.usuario.nome}">
-							
-							<f:validateRegex pattern="[a-z A-Z]+"/>
-							</p:inputText>
+							value="#{usuariosView.usuario.nome}" />
 					</div>
 					
 					<div class="p-col-4">
@@ -33,7 +30,10 @@
 					<div class="p-col-8">
 						<p:inputText id="login"
 						    required="true"
-							value="#{usuariosView.usuario.login}" />
+							value="#{usuariosView.usuario.login}">
+
+							<f:validateRegex pattern="[a-zA-Z0-9]+"/>
+						</p:inputText>
 					</div>
 					
 					<div class="p-col-4">
