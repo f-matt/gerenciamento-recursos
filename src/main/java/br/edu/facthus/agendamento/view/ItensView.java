@@ -96,6 +96,7 @@ public class ItensView implements Serializable {
 				itensBean.salvaItem(item);
 				item = new Item();
 				FacesUtils.showInfo("Item cadastrado com sucesso!");
+				PrimeFaces.current().executeScript("PF('itensDialog').hide()");
 			} else {
 				itensBean.atualizaItem(item);
 				FacesUtils.showInfo("Item atualizado com sucesso!");
