@@ -99,6 +99,7 @@ public class RecursosView implements Serializable {
 				recursosBean.salvaRecurso(recurso);
 				recurso = new Recurso();
 				FacesUtils.showInfo("Recurso cadastrado com sucesso!");
+				PrimeFaces.current().executeScript("PF('recursosDialog').hide()");
 			} else {
 				recursosBean.atualizaRecurso(recurso);
 				FacesUtils.showInfo("Recurso atualizado com sucesso!");
