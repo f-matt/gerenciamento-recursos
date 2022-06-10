@@ -4,19 +4,12 @@ import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.security.enterprise.AuthenticationStatus;
-import javax.security.enterprise.SecurityContext;
-import javax.security.enterprise.authentication.mechanism.http.AuthenticationParameters;
-import javax.security.enterprise.credential.Credential;
-import javax.security.enterprise.credential.UsernamePasswordCredential;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import br.edu.facthus.agendamento.util.FacesUtils;
 
@@ -34,12 +27,6 @@ public class AuthView implements Serializable {
 	private String password;
 	
 	@Inject
-	private SecurityContext securityContext;
-	
-	@Inject
-	private ExternalContext externalContext;
-	
-	@Inject
 	private FacesContext facesContext;
 	
 	public String login() {
@@ -49,11 +36,11 @@ public class AuthView implements Serializable {
 			request.login(username, password);
 			return "/index.jsf?faces.redirect=true";
 		} catch (ServletException e) {
-			FacesUtils.showError(mensagem: "Usuário/senha inválido")
+			FacesUtils.showError("Usuário/senha inválido");
 			return "/login.jsf?error=true";
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, e.getMessage(), e);
-			FacesUtils.showError(mensagem: "Ocorreu um erro ao fazer o login.");
+			FacesUtils.showError("Ocorreu um erro ao fazer o login.");
 			return "login.jsf";
 		}
 			

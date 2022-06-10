@@ -61,12 +61,12 @@
 
 	<login-config>
 		<auth-method>FORM</auth-method>
-		<realm-name>agendamentoApplicationDomain</real-name>
-		</form-login-config>
+		<realm-name>agendamentoApplicationDomain</realm-name>
+		<form-login-config>
 			<form-login-page>/login.jsf</form-login-page>
 			<form-error-page>/login.jsf?error=true</form-error-page>
-		</form-logib-config>
-	<login.config>
+		</form-login-config>
+	</login-config>
 	
 	<error-page>
 		<error-code>403</error-code>
