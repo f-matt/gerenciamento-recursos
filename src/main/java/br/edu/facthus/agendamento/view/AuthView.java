@@ -42,42 +42,25 @@ public class AuthView implements Serializable {
 	@Inject
 	private FacesContext facesContext;
 	
-	public void login() {
-		try {
-			if (securityContext == null) { 
-				FacesUtils.showError("Não foi possí­vel carregar o contexto de autenticação.");
-				return;
-			}
-			Credential credential = new UsernamePasswordCredential(username, password);
-			AuthenticationStatus status = securityContext.authenticate(getRequestFrom(facesContext),
-					getResponseFrom(facesContext), AuthenticationParameters.withParams().credential(credential));
-			switch (status) {
-	        case SEND_CONTINUE:
-	        	facesContext.responseComplete();
-	            break;
-	        case SEND_FAILURE:
-	        	FacesUtils.showError("Usuário/senha inválidos");
-	            break;
-	        case SUCCESS:
-	            externalContext.redirect(externalContext.getRequestContextPath() + "/index.jsf");
-	            break;
-	        default:
-	        	logger.severe("Erro processando autenticação. Status = " + status.name());
-	        	FacesUtils.showError("Ocorreu um erro ao processar a autenticação.");
-			}
-		} catch (Exception e) {
-			logger.log(Level.SEVERE, "Erro processando autenticação", e);
-			FacesUtils.showError("Ocorreu um erro ao processar a autenticação.");
-		}
-	}
-	
-	private static HttpServletResponse getResponseFrom(FacesContext context) {
-		return (HttpServletResponse) context.getExternalContext().getResponse();
-	}
+	public String login() {
+		HttpServletRequest request = (HttpServletRequest) facesContext.getExternalContext().getRequest();
 
-	private static HttpServletRequest getRequestFrom(FacesContext context) {
-		return (HttpServletRequest) context.getExternalContext().getRequest();
+		try {
+			request.login(username, password);
+			return "/index.jsf?faces.redirect=true";
+		} catch (ServletException e) {
+			FacesUtils.showError(mensagem: "Usuário/senha inválido")
+			return "/login.jsf?error=true";
+		} catch (Exception e) {
+			logger.log(Level.SEVERE, e.getMessage(), e);
+			FacesUtils.showError(mensagem: "Ocorreu um erro ao fazer o login.");
+			return "login.jsf";
+		}
+			
 	}
+		
+		
+	
 		
 	public String logout() {
 		FacesContext context = FacesContext.getCurrentInstance();
